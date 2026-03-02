@@ -19,7 +19,7 @@ const allClients = [...clients, ...clients, ...clients];
 
 export function ClientsSection() {
   return (
-    <section className="py-20 overflow-hidden bg-white">
+    <section className="pt-0 pb-20 overflow-hidden bg-white">
       <div className="container mx-auto px-4 mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,7 +31,7 @@ export function ClientsSection() {
             Trusted by Industry Leaders
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            We partner with innovative companies to deliver exceptional legal and business solutions.
+            Join 500+ companies scaling with Legal Door
           </p>
         </motion.div>
       </div>
@@ -71,8 +71,8 @@ export function ClientsSection() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
       </div>
 
-      <div className="container mx-auto px-4 mt-16 text-center">
-        <motion.p
+      <div className="container mx-auto px-4 mt-0 text-center">
+        {/* <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -80,7 +80,7 @@ export function ClientsSection() {
           className="text-slate-500 font-medium"
         >
           Join <span className="text-primary font-bold">500+</span> companies scaling with Legal Door
-        </motion.p>
+        </motion.p> */}
       </div>
     </section>
   );

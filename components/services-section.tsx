@@ -30,17 +30,17 @@ export function ServicesSection() {
   return (
     <section id="services" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center mb-12">
-          <motion.h2 
+          {/* <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-primary font-bold tracking-wide uppercase text-xs mb-3"
           >
             The Legal Door Advantage
-          </motion.h2>
-          <motion.h3 
+          </motion.h2> */}
+          <motion.h3
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -51,7 +51,7 @@ export function ServicesSection() {
         </div>
 
         {/* Advantage Badges/Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className="flex flex-wrap justify-center gap-3 mb-14">
           {advantages.map((adv, i) => (
             <motion.button
               key={i}
@@ -59,11 +59,10 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.05 }}
               whileHover={{ y: -2 }}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all border ${
-                adv.active 
-                  ? 'bg-slate-900 text-white border-transparent shadow-lg' 
-                  : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'
-              }`}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all border ${adv.active
+                ? 'bg-slate-900 text-white border-transparent shadow-lg'
+                : 'bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary'
+                }`}
             >
               <adv.icon className="w-5 h-5" />
               <span className="text-sm">{adv.label}</span>
@@ -84,7 +83,7 @@ export function ServicesSection() {
         </div>
 
         {/* Bottom CTA for Services */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           className="mt-16 text-center"

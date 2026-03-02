@@ -43,14 +43,14 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Success Stories</h2>
+            <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Averaging 4.9/5 stars across 2,000+ verified reviews</h2>
             <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
               Trusted by 500+ <br />
               <span className="text-slate-400">Global Enterprises</span>
             </h3>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="flex gap-4"
@@ -75,7 +75,7 @@ export function TestimonialsSection() {
               className="relative p-10 rounded-3xl bg-white border border-slate-100 shadow-xl shadow-slate-200/50 group"
             >
               <Quote className="absolute top-8 right-8 w-12 h-12 text-slate-100 group-hover:text-primary/10 transition-colors" />
-              
+
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-4 w-4 fill-orange-500 text-orange-500" />
@@ -88,9 +88,9 @@ export function TestimonialsSection() {
 
               <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
                 <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name} 
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -104,15 +104,15 @@ export function TestimonialsSection() {
         </div>
 
         {/* Brand Trust Bar */}
-        <motion.div 
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
           className="mt-20 pt-10 border-t border-slate-200 flex flex-wrap justify-center gap-12 grayscale opacity-50"
         >
           {/* We can add small client logos or just a trust text */}
-          <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Averaging 4.9/5 stars across 2,000+ verified reviews</p>
-        </motion.div>
+        {/*  <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Averaging 4.9/5 stars across 2,000+ verified reviews</p>
+        </motion.div> */}
       </div>
     </section>
   );

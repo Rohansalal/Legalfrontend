@@ -7,13 +7,13 @@ import { Search, Play, Star, ShieldCheck, Zap, Headphones, CheckCircle2 } from '
 
 export function HeroSection() {
   return (
-    <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_50%,#0a3d6d_100%)]">
+    <section className="relative pt-12 lg:pt-20 pb-10 overflow-hidden bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_50%,#0a3d6d_100%)]">
       {/* Advanced Animated Background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[60%] bg-orange-500/15 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] bg-pink-500/15 rounded-full blur-[120px] animate-pulse delay-700" />
       </div>
-...
+      ...
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay -z-10" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] -z-10" />
@@ -26,7 +26,7 @@ export function HeroSection() {
           className="max-w-5xl mx-auto space-y-12"
         >
           {/* Advanced Badge Style Trust Signal */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -66,7 +66,7 @@ export function HeroSection() {
               <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent italic">Dream Business</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              India's leading platform for legal and business registration. Get your company registered in 
+              India's leading platform for legal and business registration. Get your company registered in
               <span className="text-orange-400 font-bold"> just 3 steps</span> with 100% digital process.
             </p>
           </div>
@@ -102,13 +102,13 @@ export function HeroSection() {
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
               <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
             </span>
-             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
               <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
             </span>
-             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
               <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
             </span>
-             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
               <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
             </span>
           </div>
@@ -124,9 +124,9 @@ export function HeroSection() {
           </div> */}
 
           {/* Premium Professional Trust Bar */}
-          <div className="pt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="pt-2 grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Google Reviews Card */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
               className="relative group p-6 rounded-[2rem] bg-white/[0.04] border border-white/10 backdrop-blur-2xl shadow-2xl transition-all duration-500 overflow-hidden"
             >
@@ -148,14 +148,14 @@ export function HeroSection() {
             </motion.div>
 
             {/* Trustpilot Card */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
               className="relative group p-6 rounded-[2rem] bg-white/[0.04] border border-white/10 backdrop-blur-2xl shadow-2xl transition-all duration-500 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none" />
               <div className="relative flex items-center gap-5">
                 <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#00b67a] flex items-center justify-center p-3 shadow-[0_0_20px_rgba(0,182,122,0.2)]">
-                  <svg viewBox="0 0 24 24" className="w-full h-full fill-white" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-full h-full fill-white" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
                 </div>
                 <div className="text-left">
                   <div className="flex items-center gap-1 mb-1.5">
@@ -172,7 +172,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Clutch Card */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
               className="relative group p-6 rounded-[2rem] bg-white/[0.04] border border-white/10 backdrop-blur-2xl shadow-2xl transition-all duration-500 overflow-hidden"
             >

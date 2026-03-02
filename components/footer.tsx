@@ -25,7 +25,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-foreground text-white py-16 px-4">
+    <footer className="bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_50%,#0a3d6d_100%)] text-white pt-16 pb-4 px-4">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -99,7 +99,7 @@ export function Footer() {
         {/* Divider */}
         <motion.div
           variants={itemVariants}
-          className="border-t border-white/10 py-8"
+          className="border-t border-white/10 pt-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/50 text-sm">

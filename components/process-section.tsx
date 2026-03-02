@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  Search, 
-  FileSearch, 
-  ClipboardList, 
-  Play, 
+import {
+  Search,
+  FileSearch,
+  ClipboardList,
+  Play,
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
@@ -50,7 +50,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="py-24 bg-slate-50 relative overflow-hidden">
+    <section id="process" className="pt-6 pb-24 bg-slate-50 relative overflow-hidden">
       {/* Subtle Background Accents */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-blue-100 rounded-full blur-3xl -z-10 opacity-30" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-64 h-64 bg-orange-100 rounded-full blur-3xl -z-10 opacity-30" />
@@ -58,14 +58,14 @@ export function ProcessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-primary font-black tracking-[0.2em] uppercase text-xs mb-4"
           >
             Our Methodology
           </motion.h2>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -79,7 +79,7 @@ export function ProcessSection() {
         <div className="hidden lg:block relative">
           {/* Central Connecting Line */}
           <div className="absolute top-[40px] left-[10%] right-[10%] h-0.5 bg-slate-100 -z-10">
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -124,7 +124,7 @@ export function ProcessSection() {
         <div className="lg:hidden relative space-y-12">
           {/* Vertical Connecting Line */}
           <div className="absolute top-0 bottom-0 left-[27px] w-0.5 bg-slate-100 -z-10">
-            <motion.div 
+            <motion.div
               initial={{ height: 0 }}
               whileInView={{ height: '100%' }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -156,7 +156,7 @@ export function ProcessSection() {
         </div>
 
         {/* Bottom Action */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.6 }}

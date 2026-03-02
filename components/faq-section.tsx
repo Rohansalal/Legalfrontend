@@ -43,7 +43,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-20 px-4 bg-gradient-to-b from-white to-blue-50">
+    <section id="faq" className="pt-0 pb-20 px-4 bg-gradient-to-b from-white to-blue-50">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
