@@ -57,7 +57,7 @@ export function WhyChooseUs() {
             <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Why Legal Door</h2>
             <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
               The Smarter Way to <br />
-              <span className="text-slate-400">Scale Your Business</span>
+              <span className="text-primary italic">Scale Your Business</span>
             </h3>
             
             <div className="space-y-6">

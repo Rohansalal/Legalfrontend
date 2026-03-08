@@ -5,23 +5,23 @@ import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
-    title: 'CEO, Tech Startup',
-    content: 'Legal Door transformed our contract negotiations. Their expertise saved us months and significant costs. Highly recommended for any fast-scaling business.',
+    name: 'Ankita Khurana',
+    title: 'CEO, Digital Nexus India',
+    content: 'The team went above and beyond to protect my intellectual property. Their strategic approach was invaluable during our international expansion phase.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&auto=format&fit=crop',
   },
   {
-    name: 'Michael Chen',
-    title: 'Principal, Global Finance',
-    content: 'The team went above and beyond to protect my intellectual property. Their strategic approach was invaluable during our international expansion phase.',
+    name: 'Sanjay Gupta',
+    title: 'Principal, Global Finance Corp',
+    content: 'Exceptional guidance on employment law matters. They simplified complex regulations and ensured full compliance across all our regional offices.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop',
   },
   {
-    name: 'Jessica Martinez',
-    title: 'HR Director, Enterprise Corp',
-    content: 'Exceptional guidance on employment law matters. They simplified complex regulations and ensured full compliance across all our regional offices.',
+    name: 'Meera Iyer',
+    title: 'HR Director, Enterprise India',
+    content: 'Legal Door transformed our contract negotiations. Their expertise saved us months and significant costs. Highly recommended for any fast-scaling business.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&auto=format&fit=crop',
   },
@@ -44,9 +44,9 @@ export function TestimonialsSection() {
             className="max-w-2xl"
           >
             <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Averaging 4.9/5 stars across 2,000+ verified reviews</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight text-left">
               Trusted by 500+ <br />
-              <span className="text-slate-400">Global Enterprises</span>
+              <span className="text-primary italic">Global Enterprises</span>
             </h3>
           </motion.div>
 

@@ -3,17 +3,58 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Play, Star, ShieldCheck, Zap, Headphones, CheckCircle2 } from 'lucide-react';
+import { Search, Play, Star, ShieldCheck, Zap, Headphones, CheckCircle2, Landmark, FileCheck, Scale, Gavel } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { GlobalSearchBar } from '@/components/search-bar';
 
 export function HeroSection() {
+  const floatingIcons = [
+    { Icon: ShieldCheck, color: 'text-blue-400', top: '15%', left: '10%', delay: 0 },
+    { Icon: Zap, color: 'text-orange-400', top: '25%', right: '15%', delay: 1 },
+    { Icon: Landmark, color: 'text-indigo-400', bottom: '20%', left: '15%', delay: 2 },
+    { Icon: FileCheck, color: 'text-emerald-400', bottom: '30%', right: '10%', delay: 1.5 },
+    { Icon: Scale, color: 'text-pink-400', top: '40%', left: '5%', delay: 0.5 },
+    { Icon: Gavel, color: 'text-slate-400', bottom: '15%', right: '25%', delay: 2.5 },
+  ];
+
   return (
     <section className="relative pt-12 lg:pt-20 pb-10 overflow-hidden bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_50%,#0a3d6d_100%)]">
+      {/* Floating Animated Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {floatingIcons.map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              y: [0, -20, 0],
+              rotate: [0, 10, -10, 0]
+            }}
+            transition={{ 
+              duration: 5,
+              repeat: Infinity,
+              delay: item.delay,
+              ease: "easeInOut"
+            }}
+            className={cn("absolute", item.color)}
+            style={{ 
+              top: item.top, 
+              left: item.left, 
+              right: item.right, 
+              bottom: item.bottom 
+            }}
+          >
+            <item.Icon className="w-12 h-12 md:w-16 md:h-16 opacity-20" strokeWidth={1} />
+          </motion.div>
+        ))}
+      </div>
+
       {/* Advanced Animated Background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[60%] bg-orange-500/15 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] bg-pink-500/15 rounded-full blur-[120px] animate-pulse delay-700" />
       </div>
-      ...
+
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay -z-10" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] -z-10" />
@@ -63,7 +104,7 @@ export function HeroSection() {
           <div className="space-y-6">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.05] tracking-tight">
               Register Your <br />
-              <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent italic">Dream Business</span>
+              <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent italic pb-2 px-2">Dream Business</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
               India's leading platform for legal and business registration. Get your company registered in
@@ -71,25 +112,7 @@ export function HeroSection() {
             </p>
           </div>
 
-          {/* Ultra-Modern Centered Search Bar */}
-          <div className="relative max-w-3xl mx-auto group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-pink-600 to-indigo-500 rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-500" />
-            <div className="relative flex items-center bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-              <div className="pl-6 flex items-center pointer-events-none">
-                <Search className="h-6 w-6 text-slate-400 group-focus-within:text-orange-400 transition-colors" />
-              </div>
-              <Input
-                type="text"
-                placeholder="Search legal services (e.g. Pvt Ltd, GST, MSME)"
-                className="flex-1 bg-transparent border-none text-white placeholder:text-slate-500 focus-visible:ring-0 py-8 text-lg px-4"
-              />
-              <div className="pr-3">
-                <Button className="h-14 px-10 rounded-xl text-lg font-black bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white shadow-lg transition-all active:scale-95">
-                  Search
-                </Button>
-              </div>
-            </div>
-          </div>
+          <GlobalSearchBar />
 
           {/* Quick Service Badges */}
           <div className="flex flex-wrap justify-center gap-3 text-slate-400 text-sm font-semibold">
@@ -103,25 +126,12 @@ export function HeroSection() {
               <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
+              <CheckCircle2 className="w-4 h-4 text-orange-400" /> MSME
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
-            </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-4 h-4 text-orange-400" /> Trademark
+              <CheckCircle2 className="w-4 h-4 text-orange-400" /> LLP
             </span>
           </div>
-
-          {/* Action Row
-          <div className="flex flex-wrap items-center justify-center gap-10 pt-4">
-            <button className="flex items-center gap-4 font-black text-white hover:text-orange-400 transition-all group">
-              <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 shadow-2xl flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                <Play className="w-6 h-6 fill-current" />
-              </div>
-              <span className="text-lg uppercase tracking-widest">Watch Process</span>
-            </button>
-          </div> */}
 
           {/* Premium Professional Trust Bar */}
           <div className="pt-2 grid grid-cols-1 md:grid-cols-3 gap-6">

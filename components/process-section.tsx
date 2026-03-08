@@ -61,28 +61,37 @@ export function ProcessSection() {
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-primary font-black tracking-[0.2em] uppercase text-xs mb-4"
+            className="text-primary font-black tracking-[0.2em] uppercase text-xs mb-2"
           >
             Our Methodology
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] mb-4"
+          >
+            Precision • Integrity • Excellence
+          </motion.p>
           <motion.h3
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black text-slate-900 leading-tight"
           >
-            How <span className="text-slate-400">Legal Door</span> Works
+            How <span className="text-primary italic">Legal Door</span> Works
           </motion.h3>
         </div>
 
         {/* Process Flow - Desktop */}
         <div className="hidden lg:block relative">
           {/* Central Connecting Line */}
-          <div className="absolute top-[40px] left-[10%] right-[10%] h-0.5 bg-slate-100 -z-10">
+          <div className="absolute top-[40px] left-[10%] right-[10%] h-[3px] bg-slate-100 -z-10 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
+              viewport={{ once: true }}
               className="h-full bg-gradient-to-r from-blue-500 via-orange-500 to-emerald-500"
             />
           </div>

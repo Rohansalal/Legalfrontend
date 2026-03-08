@@ -9,6 +9,7 @@ import { BlogSection } from '@/components/blog-section';
 import { FAQSection } from '@/components/faq-section';
 import { CTASection } from '@/components/cta-section';
 import { Footer } from '@/components/footer';
+import { FloatingIcons } from '@/components/floating-icons';
 
 export const metadata = {
   title: 'Legal Door - Expert Legal Services for Business Success',
@@ -25,17 +26,26 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative overflow-hidden">
       <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <ClientsSection />
-      <ProcessSection />
-      <WhyChooseUs />
-      <TestimonialsSection />
-      <BlogSection />
-      <FAQSection />
-      <CTASection />
+      
+      {/* Background Floating Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <FloatingIcons />
+      </div>
+
+      <div className="relative z-10">
+        <HeroSection />
+        <ServicesSection />
+        <ClientsSection />
+        <ProcessSection />
+        <WhyChooseUs />
+        <TestimonialsSection />
+        <BlogSection />
+        <FAQSection />
+        <CTASection />
+      </div>
+      
       <Footer />
     </main>
   );

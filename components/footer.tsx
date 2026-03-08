@@ -1,130 +1,122 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight, Clock } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
-    <footer className="bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_50%,#0a3d6d_100%)] text-white pt-16 pb-4 px-4">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="max-w-6xl mx-auto"
-      >
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <motion.div variants={itemVariants}>
-            <Image
-              src="/images/logo.png"
-              alt="Legal Door"
-              width={50}
-              height={50}
-              className="h-12 w-auto mb-4 brightness-0 invert"
-            />
-            <p className="text-white/70">
-              Your trusted partner in legal excellence and business success.
-            </p>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-bold text-lg mb-4">Services</h4>
-            <ul className="space-y-2 text-white/70">
-              {['Corporate Law', 'IP Protection', 'Employment Law', 'Litigation'].map((service) => (
-                <li key={service}>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Company */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-bold text-lg mb-4">Company</h4>
-            <ul className="space-y-2 text-white/70">
-              {['About Us', 'Our Team', 'Blog', 'Careers'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-bold text-lg mb-4">Contact</h4>
-            <ul className="space-y-3 text-white/70">
-              <li className="flex gap-2 items-start">
-                <Phone className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>(555) 123-4567</span>
-              </li>
-              <li className="flex gap-2 items-start">
-                <Mail className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>hello@legaldoor.com</span>
-              </li>
-              <li className="flex gap-2 items-start">
-                <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>123 Legal Ave, Suite 100, Business City, BC 12345</span>
-              </li>
-            </ul>
-          </motion.div>
-        </div>
-
-        {/* Divider */}
-        <motion.div
-          variants={itemVariants}
-          className="border-t border-white/10 pt-8"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-white/50 text-sm">
-              © {currentYear} Legal Door. All rights reserved.
+    <footer className="bg-slate-950 text-white pt-24 pb-12 overflow-hidden relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -mr-48 -mt-24" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+          {/* Company Info */}
+          <div className="space-y-8">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/logo.png"
+                alt="Legal Door"
+                width={100}
+                height={100}
+                className="h-16 w-auto brightness-0 invert"
+              />
+            </Link>
+            <p className="text-slate-400 text-sm leading-relaxed font-medium">
+              Legal Door is a premium legal-tech platform dedicated to providing world-class legal, taxation, and business compliance services with absolute precision and integrity.
             </p>
             <div className="flex gap-4">
-              {[
-                { Icon: Linkedin, href: '#' },
-                { Icon: Twitter, href: '#' },
-                { Icon: Facebook, href: '#' },
-              ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-                >
-                  <social.Icon className="h-5 w-5" />
-                </motion.a>
+              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
+                <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group">
+                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                </a>
               ))}
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+
+          {/* Quick Links */}
+          <div className="space-y-8">
+            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Organization</h4>
+            <ul className="space-y-4">
+              {[
+                { name: 'About Us', href: '/about' },
+                { name: 'Our Team', href: '/team' },
+                { name: 'Latest Journal', href: '/blog' },
+                { name: 'Careers', href: '/careers' },
+                { name: 'Research & Dev', href: '/about' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group">
+                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-primary" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="space-y-8">
+            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Key Services</h4>
+            <ul className="space-y-4">
+              {[
+                { name: 'Business Registration', href: '/business-registration' },
+                { name: 'Property Services', href: '/property' },
+                { name: 'NGO Support', href: '/ngo-services' },
+                { name: 'Lawyer Consultation', href: '/lawyer-services' },
+                { name: 'Global Expansion', href: '/global-business' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group">
+                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all text-primary" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Corporate Office</h4>
+            <ul className="space-y-4">
+              <li className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-start group cursor-default">
+                <MapPin className="w-4 h-4 mr-2 text-primary shrink-0 mt-0.5" />
+                <span>
+                  12th Floor, Legal Tower,<br />
+                  Business District, Mumbai 400001
+                </span>
+              </li>
+              <li className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group cursor-default">
+                <Phone className="w-4 h-4 mr-2 text-primary shrink-0" />
+                <span>+91 (22) 4567-8900</span>
+              </li>
+              <li className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group cursor-default">
+                <Mail className="w-4 h-4 mr-2 text-primary shrink-0" />
+                <span>contact@legaldoor.in</span>
+              </li>
+              <li className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group cursor-default">
+                <Clock className="w-4 h-4 mr-2 text-primary shrink-0" />
+                <span>Mon - Sat, 10am - 7pm</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">
+            © 2024 Legal Door. All Rights Reserved.
+          </p>
+          <div className="flex gap-8">
+            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((text) => (
+              <a key={text} href="#" className="text-slate-500 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">
+                {text}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
