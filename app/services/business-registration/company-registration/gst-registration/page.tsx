@@ -53,7 +53,7 @@ export default function GSTRegistrationPage() {
       { q: 'Is GST registration mandatory for all businesses?', a: 'No. GST is mandatory only if your aggregate turnover exceeds ₹20 Lakhs (₹10 Lakhs in special category states). However, inter-state sellers, e-commerce sellers, and certain other businesses must register regardless of turnover.' },
       { q: 'Can I have multiple GSTINs?', a: 'Yes. If your business operates in multiple states, you need a separate GSTIN for each state. Within a state, one GSTIN per PAN is issued.' },
       { q: 'What is a composite scheme?', a: 'Small businesses with turnover up to ₹1.5 Crores can opt for the composition scheme and pay GST at a flat rate (1–5%) instead of regular rates.' },
-      { q: 'What happens if I don't register for GST?', a: 'Non-registration attracts a penalty of 10% of tax due or ₹10,000 (whichever is higher). For deliberate evasion, penalties can be 100% of tax.' },
+      { q: "What happens if I don't register for GST?", a: 'Non-registration attracts a penalty of 10% of tax due or ₹10,000 (whichever is higher). For deliberate evasion, penalties can be 100% of tax.' },
       { q: 'How long is the GST registration certificate valid?', a: 'GST registration is valid until it is cancelled. Regular taxpayers do not need to renew registration.' },
     ],
   };

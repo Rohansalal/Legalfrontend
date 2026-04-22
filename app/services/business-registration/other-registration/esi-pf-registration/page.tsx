@@ -4,7 +4,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { CTASection } from '@/components/cta-section';
 import { ServiceTemplate } from '@/components/service-template';
-import { Users, ShieldCheck, Heart, Calculator, UserCheck, FileSearch, CheckCircle2, FileCheck } from 'lucide-react';
+import { Users, ShieldCheck, Heart, Calculator, UserCheck, FileSearch, CheckCircle2, FileCheck, Globe } from 'lucide-react';
 
 export default function ESIPFRegistrationPage() {
   const data = {
