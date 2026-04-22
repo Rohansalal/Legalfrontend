@@ -19,19 +19,28 @@ const allClients = [...clients, ...clients];
 
 export function ClientsSection() {
   return (
-    <section className="pt-0 pb-24 overflow-hidden bg-white">
-      <div className="container mx-auto px-4 mb-16 text-center">
+    <section className="py-24 overflow-hidden bg-white relative">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/pinstripe-dark.png')]" />
+      </div>
+
+      <div className="container mx-auto px-4 mb-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-500 font-bold text-[10px] uppercase tracking-widest mb-6">
+            Global Recognition
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
             Trusted by <span className="text-primary italic">Industry Leaders.</span>
           </h2>
-          <p className="text-lg text-slate-500 font-bold max-w-2xl mx-auto">
-            Powering compliance for 500+ Indian conglomerates and growing startups.
+          <p className="text-lg md:text-xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
+            Powering legal compliance for over <span className="text-primary font-black">500+</span> Indian conglomerates and fast-growing global startups.
           </p>
         </motion.div>
       </div>

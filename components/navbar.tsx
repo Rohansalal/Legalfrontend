@@ -3,32 +3,32 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Building2, 
-  Globe, 
-  Search, 
-  FileCheck, 
-  Landmark, 
-  ShieldCheck, 
-  ArrowRight, 
-  Zap, 
-  Sparkles, 
-  FileText, 
-  Users, 
-  Heart, 
-  Gavel, 
-  Scale, 
-  Briefcase, 
-  Home, 
-  User, 
-  TrendingUp, 
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Building2,
+  Globe,
+  Search,
+  FileCheck,
+  Landmark,
+  ShieldCheck,
+  ArrowRight,
+  Zap,
+  Sparkles,
+  FileText,
+  Users,
+  Gavel,
+  Scale,
+  Briefcase,
+  Home,
+  User,
+  TrendingUp,
   Plane,
   Headphones,
   CheckCircle2,
-  Clock
+  Clock,
+  Award
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -52,131 +52,193 @@ import { cn } from "@/lib/utils";
 const businessRegistrationCategories = [
   {
     id: 'company-registration',
-    title: 'Company Registration',
+    title: 'A. Company Registration',
     icon: Building2,
-    description: 'Start your business as a legal entity in India.',
+    description: 'Pvt Ltd, Public Ltd, LLP, OPC, NBFC & more.',
     href: '/services/business-registration/company-registration',
     subServices: [
       { title: 'Private Limited Company', href: '/services/business-registration/company-registration/private-limited-company' },
-      { title: 'Limited Liability Partnership', href: '/services/business-registration/company-registration/limited-liability-partnership' },
-      { title: 'One Person Company', href: '/services/business-registration/company-registration/one-person-company' },
-      { title: 'Sole Proprietorship', href: '/services/business-registration/company-registration/sole-proprietorship' },
-      { title: 'Nidhi Company', href: '/services/business-registration/company-registration/nidhi-company' },
+      { title: 'Public Limited Company', href: '/services/business-registration/company-registration/public-limited-company' },
+      { title: 'LLP Registration', href: '/services/business-registration/company-registration/llp-registration' },
+      { title: 'One Person Company (OPC)', href: '/services/business-registration/company-registration/one-person-company' },
+      { title: 'GST Registration', href: '/services/business-registration/company-registration/gst-registration' },
+      { title: 'Section 8 Company', href: '/services/business-registration/company-registration/section-8-company' },
       { title: 'Producer Company', href: '/services/business-registration/company-registration/producer-company' },
+      { title: 'Proprietorship Firm', href: '/services/business-registration/company-registration/proprietorship-firm' },
       { title: 'Partnership Firm', href: '/services/business-registration/company-registration/partnership-firm' },
-      { title: 'Startup India Registration', href: '/services/business-registration/company-registration/startup-india-registration' },
+      { title: 'NBFC Registration', href: '/services/business-registration/company-registration/nbfc-registration' },
     ]
   },
   {
-    id: 'international-setup',
-    title: 'International Setup',
-    icon: Globe,
-    description: 'Expand your horizons with global registration.',
-    href: '/services/business-registration/international-business-setup',
+    id: 'other-registration',
+    title: 'B. Other Registration',
+    icon: FileText,
+    description: 'Society, Trust, RERA, IEC, ESI & PF and more.',
+    href: '/services/business-registration/other-registration',
     subServices: [
-      { title: 'USA Company', href: '/services/business-registration/international-business-setup/usa-company' },
-      { title: 'UK Company', href: '/services/business-registration/international-business-setup/uk-company' },
-      { title: 'Dubai Company', href: '/services/business-registration/international-business-setup/dubai-company' },
-      { title: 'Singapore Company', href: '/services/business-registration/international-business-setup/singapore-company' },
+      { title: 'Society Registration (NGO)', href: '/services/business-registration/other-registration/society-registration' },
+      { title: 'Trust Registration (NGO)', href: '/services/business-registration/other-registration/trust-registration' },
+      { title: 'Political Party Registration', href: '/services/business-registration/other-registration/political-party-registration' },
+      { title: '12A & 80G Registration', href: '/services/business-registration/other-registration/12a-80g-registration' },
+      { title: 'RWA Registration', href: '/services/business-registration/other-registration/rwa-registration' },
+      { title: 'RERA Registration', href: '/services/business-registration/other-registration/rera-registration' },
+      { title: 'Import Export Code (IEC)', href: '/services/business-registration/other-registration/import-export-code' },
+      { title: 'FCRA / FEMA Registration', href: '/services/business-registration/other-registration/fcra-fema-registration' },
+      { title: 'ESI & PF Registration', href: '/services/business-registration/other-registration/esi-pf-registration' },
+      { title: 'Telemarketing Registration', href: '/services/business-registration/other-registration/telemarketing-registration' },
     ]
   },
   {
-    id: 'name-search',
-    title: 'Company Name Search',
-    icon: Search,
-    description: 'Secure a unique identity for your brand.',
-    href: '/services/business-registration/company-name-search',
+    id: 'license',
+    title: 'C. License',
+    icon: Award,
+    description: 'FSSAI, Drug, Liquor, Factory, FFMC & more.',
+    href: '/services/business-registration/license',
     subServices: [
-      { title: 'MCA Name Search', href: '/services/business-registration/company-name-search/mca-name-search' },
-      { title: 'Trademark Name Search', href: '/services/business-registration/company-name-search/trademark-name-search' },
-      { title: 'Domain Name Check', href: '/services/business-registration/company-name-search/domain-name-check' },
-      { title: 'RUN Application', href: '/services/business-registration/company-name-search/run-application' },
-      { title: 'Brand Name Consultation', href: '/services/business-registration/company-name-search/brand-name-consultation' },
+      { title: 'FSSAI License', href: '/services/business-registration/license/fssai-license' },
+      { title: 'AYUSH License', href: '/services/business-registration/license/ayush-license' },
+      { title: 'Drug License', href: '/services/business-registration/license/drug-license' },
+      { title: 'Liquor License', href: '/services/business-registration/license/liquor-license' },
+      { title: 'Factory License', href: '/services/business-registration/license/factory-license' },
+      { title: 'Small Finance Bank License', href: '/services/business-registration/license/small-finance-bank-license' },
+      { title: 'FFMC License', href: '/services/business-registration/license/ffmc-license' },
+      { title: 'PASARA License', href: '/services/business-registration/license/pasara-license' },
+      { title: 'Trade License', href: '/services/business-registration/license/trade-license' },
+      { title: 'Shop & Establishment License', href: '/services/business-registration/license/shop-establishment-license' },
     ]
   },
   {
-    id: 'licenses',
-    title: 'Licenses & Registrations',
-    icon: FileCheck,
-    description: 'All essential permits for your business ops.',
-    href: '/services/business-registration/licenses-and-registrations',
+    id: 'ngo-registration',
+    title: 'D. NGO Registration',
+    icon: Users,
+    description: 'Trust, Society & Section 8 Company for NGOs.',
+    href: '/services/business-registration/ngo-registration',
     subServices: [
-      { title: 'GST Registration', href: '/services/business-registration/licenses-and-registrations/gst-registration' },
-      { title: 'Shop & Establishment', href: '/services/business-registration/licenses-and-registrations/shop-establishment-license' },
-      { title: 'FSSAI License', href: '/services/business-registration/licenses-and-registrations/fssai-license' },
-      { title: 'Import Export Code', href: '/services/business-registration/licenses-and-registrations/import-export-code' },
-      { title: 'Trade License', href: '/services/business-registration/licenses-and-registrations/trade-license' },
-      { title: 'Professional Tax', href: '/services/business-registration/licenses-and-registrations/professional-tax' },
-      { title: 'ISO Certification', href: '/services/business-registration/licenses-and-registrations/iso-certification' },
-      { title: 'MSME Registration', href: '/services/business-registration/licenses-and-registrations/msme-registration' },
+      { title: 'Trust Registration', href: '/services/business-registration/ngo-registration/trust-registration' },
+      { title: 'Society Registration', href: '/services/business-registration/ngo-registration/society-registration' },
+      { title: 'Section 8 Company', href: '/services/business-registration/ngo-registration/section-8-company' },
     ]
-  }
+  },
+  {
+    id: 'tax-exemption',
+    title: 'E. Tax Exemption',
+    icon: ShieldCheck,
+    description: '12A & 80G income tax exemptions for NGOs.',
+    href: '/services/business-registration/tax-exemption',
+    subServices: [
+      { title: '12A Registration', href: '/services/business-registration/tax-exemption/12a-registration' },
+      { title: '80G Registration', href: '/services/business-registration/tax-exemption/80g-registration' },
+    ]
+  },
 ];
 
 const propertyCategories = [
   {
-    id: 'prop-doc',
-    title: 'Documentation',
-    icon: FileText,
-    description: 'Sale deeds and agreements.',
-    href: '/services/property',
-    subServices: [
-      { title: 'Sale Deed Drafting', href: '/services/property/property-documentation/sale-deed-drafting' },
-      { title: 'Gift Deed', href: '/services/property/property-documentation/gift-deed' },
-      { title: 'Rental Agreement', href: '/services/property/property-documentation/rental-agreement' },
-      { title: 'Lease Agreement', href: '/services/property/property-documentation/lease-agreement' }
-    ]
-  },
-  {
-    id: 'prop-reg',
-    title: 'Registration',
+    id: 'prop-registration',
+    title: 'A. Registration',
     icon: Landmark,
-    description: 'Government registration.',
-    href: '/services/property',
+    description: 'Sale deed, gift deed, will, GPA & all property registrations.',
+    href: '/services/property/registration',
     subServices: [
-      { title: 'Property Registration', href: '/services/property/property-registration/registration' },
-      { title: 'Stamp Duty Calculation', href: '/services/property/property-registration/stamp-duty' },
-      { title: 'Property Mutation', href: '/services/property/property-registration/mutation' }
+      { title: 'Sale Deed Registration', href: '/services/property/registration/sale-deed' },
+      { title: 'Gift Deed Registration', href: '/services/property/registration/gift-deed' },
+      { title: 'Lease Deed Registration', href: '/services/property/registration/lease-deed' },
+      { title: 'Conveyance Deed Registration', href: '/services/property/registration/conveyance-deed' },
+      { title: 'Agreement to Sale', href: '/services/property/registration/agreement-to-sale' },
+      { title: 'Mutation', href: '/services/property/registration/mutation' },
+      { title: 'TM (Transfer of Memorandum)', href: '/services/property/registration/transfer-of-memorandum' },
+      { title: 'Will Registration', href: '/services/property/registration/will-registration' },
+      { title: 'General Power of Attorney', href: '/services/property/registration/general-power-of-attorney' },
+      { title: 'Builder Buyer Agreement', href: '/services/property/registration/builder-buyer-agreement' },
     ]
   },
   {
-    id: 'prop-ver',
-    title: 'Verification',
+    id: 'prop-verification',
+    title: 'B. Verification & Report',
     icon: ShieldCheck,
-    description: 'Title checks and due diligence.',
-    href: '/services/property',
+    description: 'Title search, due diligence, CERSAI & legal reports.',
+    href: '/services/property/verification',
     subServices: [
-      { title: 'Title Verification', href: '/services/property/property-verification/title-verification' },
-      { title: 'Land Record Check', href: '/services/property/property-verification/land-record' },
-      { title: 'Legal Due Diligence', href: '/services/property/property-verification/due-diligence' }
+      { title: 'Title Search Verification', href: '/services/property/verification/title-search' },
+      { title: 'Encumbrances Check', href: '/services/property/verification/encumbrances-check' },
+      { title: 'Due Diligence Report', href: '/services/property/verification/due-diligence-report' },
+      { title: 'CERSAI Verification', href: '/services/property/verification/cersai-verification' },
+      { title: 'Certified Copy of Documents', href: '/services/property/verification/certified-copy' },
+      { title: 'Permission to Mortgage (PTM)', href: '/services/property/verification/permission-to-mortgage' },
+      { title: 'Legal Publish in Newspaper', href: '/services/property/verification/legal-newspaper-publication' },
     ]
-  }
+  },
+  {
+    id: 'prop-certificate',
+    title: 'C. Certificate',
+    icon: Award,
+    description: 'Surviving member, legal heir & succession certificates.',
+    href: '/services/property/certificate',
+    subServices: [
+      { title: 'Surviving Member Certificate', href: '/services/property/certificate/surviving-member' },
+      { title: 'Legal Heir Certificate', href: '/services/property/certificate/legal-heir' },
+      { title: 'Succession Certificate', href: '/services/property/certificate/succession-certificate' },
+    ]
+  },
 ];
 
-const ngoCategories = [
+const complianceCategories = [
   {
-    id: 'ngo-reg',
-    title: 'NGO Registration',
-    icon: Users,
-    description: 'Trust and Society setup.',
-    href: '/services/ngo-services',
+    id: 'company-compliances',
+    title: 'D-1 Company Compliances',
+    icon: FileCheck,
+    description: 'Annual filings, GST, ITR & accounting for all company types.',
+    href: '/services/compliances/company-compliances',
     subServices: [
-      { title: 'Trust Registration', href: '/services/ngo-services/ngo-registration/trust' },
-      { title: 'Society Registration', href: '/services/ngo-services/ngo-registration/society' },
-      { title: 'Section 8 Company', href: '/services/ngo-services/ngo-registration/section-8' }
+      { title: 'Annual Compliances for Pvt. Ltd.', href: '/services/compliances/company-compliances/annual-pvt-ltd' },
+      { title: 'Annual Compliances for Public Ltd.', href: '/services/compliances/company-compliances/annual-public-ltd' },
+      { title: 'Annual Compliances for LLP', href: '/services/compliances/company-compliances/annual-llp' },
+      { title: 'Annual Compliances for OPC', href: '/services/compliances/company-compliances/annual-opc' },
+      { title: 'Annual Compliances for Nidhi Company', href: '/services/compliances/company-compliances/annual-nidhi-company' },
+      { title: 'Annual Compliances for Section 8 Company', href: '/services/compliances/company-compliances/annual-section-8' },
+      { title: 'Annual Compliances for Producer Company', href: '/services/compliances/company-compliances/annual-producer-company' },
+      { title: 'Accounting / Audit / Book Keeping', href: '/services/compliances/company-compliances/accounting-audit-bookkeeping' },
+      { title: 'GST Filing', href: '/services/compliances/company-compliances/gst-filing' },
+      { title: 'ITR Filing', href: '/services/compliances/company-compliances/itr-filing' },
     ]
   },
   {
-    id: 'ngo-tax',
-    title: 'Tax Exemption',
-    icon: ShieldCheck,
-    description: '12A and 80G registrations.',
-    href: '/services/ngo-services',
+    id: 'change-in-business',
+    title: 'D-2 Change in Business',
+    icon: TrendingUp,
+    description: 'Name, directors, capital, shares & other business changes.',
+    href: '/services/compliances/change-in-business',
     subServices: [
-      { title: '12A Registration', href: '/services/ngo-services/ngo-tax-exemption/12a' },
-      { title: '80G Registration', href: '/services/ngo-services/ngo-tax-exemption/80g' }
+      { title: 'Change Company Name', href: '/services/compliances/change-in-business/change-company-name' },
+      { title: 'Change of Place of the Company', href: '/services/compliances/change-in-business/change-place' },
+      { title: 'Change of Object of the Company', href: '/services/compliances/change-in-business/change-object' },
+      { title: 'Change of Directors', href: '/services/compliances/change-in-business/change-directors' },
+      { title: 'Increased Authorized Capital', href: '/services/compliances/change-in-business/increase-authorized-capital' },
+      { title: 'Director (DIR-3) KYC', href: '/services/compliances/change-in-business/director-dir3-kyc' },
+      { title: 'Dematerialization of Shares', href: '/services/compliances/change-in-business/dematerialization-of-shares' },
+      { title: 'Share Transfer', href: '/services/compliances/change-in-business/share-transfer' },
+      { title: 'Fund Raising', href: '/services/compliances/change-in-business/fund-raising' },
     ]
-  }
+  },
+  {
+    id: 'closure-convert-others',
+    title: 'D-3 Closure, Convert & Others',
+    icon: Briefcase,
+    description: 'Company conversions, closures & professional audit reports.',
+    href: '/services/compliances/closure-convert-others',
+    subServices: [
+      { title: 'Convert Pvt. Ltd. to Public Ltd.', href: '/services/compliances/closure-convert-others/pvt-to-public' },
+      { title: 'Convert LLP to Pvt. Ltd.', href: '/services/compliances/closure-convert-others/llp-to-pvt' },
+      { title: 'Close LLP', href: '/services/compliances/closure-convert-others/close-llp' },
+      { title: 'Close Pvt. Ltd.', href: '/services/compliances/closure-convert-others/close-pvt-ltd' },
+      { title: 'Close Public Ltd.', href: '/services/compliances/closure-convert-others/close-public-ltd' },
+      { title: 'Close NGO', href: '/services/compliances/closure-convert-others/close-ngo' },
+      { title: 'CA Audit & Report', href: '/services/compliances/closure-convert-others/ca-audit-report' },
+      { title: 'CS Audit & Report', href: '/services/compliances/closure-convert-others/cs-audit-report' },
+      { title: 'CMA Audit & Report', href: '/services/compliances/closure-convert-others/cma-audit-report' },
+      { title: 'Advocate Audit & Report', href: '/services/compliances/closure-convert-others/advocate-audit-report' },
+    ]
+  },
 ];
 
 const lawyerCategories = [
@@ -197,58 +259,42 @@ const lawyerCategories = [
 
 const documentationCategories = [
   {
-    id: 'doc-business',
-    title: 'Business Documentation',
+    id: 'legal-docs',
+    title: 'A. Legal',
+    icon: Scale,
+    description: 'Legal notices, affidavits, agreements & attestation.',
+    href: '/services/documentation/legal',
+    subServices: [
+      { title: 'Legal Notice', href: '/services/documentation/legal/legal-notice' },
+      { title: 'Affidavit', href: '/services/documentation/legal/affidavit' },
+      { title: 'Notary, Stamp & Attestation', href: '/services/documentation/legal/notary-stamp-attestation' },
+      { title: 'Apostille (MEA/HRD)', href: '/services/documentation/legal/apostille' },
+      { title: 'Marriage Registration', href: '/services/documentation/legal/marriage-registration' },
+      { title: 'Rent / Lease Agreement', href: '/services/documentation/legal/rent-lease-agreement' },
+      { title: 'Legal Contract', href: '/services/documentation/legal/legal-contract' },
+      { title: 'Business Agreement', href: '/services/documentation/legal/business-agreement' },
+      { title: 'Real Estate Agreement', href: '/services/documentation/legal/real-estate-agreement' },
+    ]
+  },
+  {
+    id: 'business-corporate-docs',
+    title: 'B. Business / Corporate Document',
     icon: Briefcase,
-    description: 'NDA, MOU, and vendor agreements.',
-    href: '/services/documentation',
+    description: 'Corporate letters, agreements & business documents.',
+    href: '/services/documentation/business-corporate',
     subServices: [
-      { title: 'NDA Drafting', href: '/services/documentation/business-documents/nda' },
-      { title: 'MOU Drafting', href: '/services/documentation/business-documents/mou' },
-      { title: 'Vendor Agreement', href: '/services/documentation/business-documents/vendor-agreement' },
-      { title: 'Shareholders Agreement', href: '/services/documentation/business-documents/shareholders-agreement' },
-      { title: 'Founders Agreement', href: '/services/documentation/business-documents/founder-agreement' }
+      { title: 'No Objection Certificate', href: '/services/documentation/business-corporate/noc' },
+      { title: 'Offer Letter / Appointment Letter', href: '/services/documentation/business-corporate/offer-appointment-letter' },
+      { title: 'Resignation Letter', href: '/services/documentation/business-corporate/resignation-letter' },
+      { title: 'Termination Letter', href: '/services/documentation/business-corporate/termination-letter' },
+      { title: 'Memorandum of Understanding', href: '/services/documentation/business-corporate/mou' },
+      { title: 'Franchise Agreement', href: '/services/documentation/business-corporate/franchise-agreement' },
+      { title: 'Joint Venture Agreement', href: '/services/documentation/business-corporate/joint-venture-agreement' },
+      { title: 'Non-Disclosure Agreement', href: '/services/documentation/business-corporate/nda' },
+      { title: 'Auditor Appointment Letter', href: '/services/documentation/business-corporate/auditor-appointment-letter' },
+      { title: 'Appointment of Company Secretary', href: '/services/documentation/business-corporate/company-secretary-appointment' },
     ]
   },
-  {
-    id: 'doc-property',
-    title: 'Property Documentation',
-    icon: Home,
-    description: 'Rent, sale and lease agreements.',
-    href: '/services/documentation',
-    subServices: [
-      { title: 'Rent Agreement', href: '/services/documentation/property-documents/rental-agreement' },
-      { title: 'Sale Agreement', href: '/services/documentation/property-documents/sale-deed' },
-      { title: 'Lease Agreement', href: '/services/documentation/property-documents/lease-agreement' },
-      { title: 'Property Partition Deed', href: '/services/documentation/property-documents/partition-deed' }
-    ]
-  },
-  {
-    id: 'doc-personal',
-    title: 'Personal Documents',
-    icon: User,
-    description: 'Wills, affidavits and power of attorney.',
-    href: '/services/documentation',
-    subServices: [
-      { title: 'Affidavit', href: '/services/documentation/personal-legal-documents/affidavits' },
-      { title: 'Power of Attorney', href: '/services/documentation/personal-legal-documents/power-of-attorney' },
-      { title: 'Will', href: '/services/documentation/personal-legal-documents/wills-trusts' },
-      { title: 'Succession Certificate', href: '/services/documentation/personal-legal-documents/succession-certificate' }
-    ]
-  },
-  {
-    id: 'doc-employment',
-    title: 'Employment & HR',
-    icon: Users,
-    description: 'Offer letters and HR policies.',
-    href: '/services/documentation',
-    subServices: [
-      { title: 'Employment Agreement', href: '/services/documentation/employment-hr/employment-agreement' },
-      { title: 'Offer Letter', href: '/services/documentation/employment-hr/offer-letter' },
-      { title: 'Internship Agreement', href: '/services/documentation/employment-hr/internship-agreement' },
-      { title: 'HR Policy', href: '/services/documentation/employment-hr/hr-policy' }
-    ]
-  }
 ];
 
 const globalBusinessCategories = [
@@ -269,16 +315,16 @@ const globalBusinessCategories = [
 
 const mainNavLinks = [
   { title: 'Business Registration', categories: businessRegistrationCategories },
-  { title: 'Property', categories: propertyCategories },
-  { title: 'NGO Services', categories: ngoCategories },
-  { title: 'Lawyer Services', categories: lawyerCategories },
+  { title: 'Compliances', categories: complianceCategories },
   { title: 'Documentation', categories: documentationCategories },
-  { title: 'Global Business', categories: globalBusinessCategories }
+  { title: 'Property', categories: propertyCategories },
+  { title: 'Lawyer Services', categories: lawyerCategories },
+  { title: 'Global Business', categories: globalBusinessCategories },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(businessRegistrationCategories[0].id);
+  const [activeCategory, setActiveCategory] = useState<string>(businessRegistrationCategories[0].id);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -292,9 +338,9 @@ export function Navbar() {
     const activeData = categories.find(c => c.id === activeCategory) || categories[0];
     
     return (
-      <div className="flex w-[900px] min-h-[480px] bg-white">
+      <div className="flex w-[960px] min-h-[520px] bg-white">
         {/* LEFT PANEL: Categories (320px) */}
-        <div className="w-[320px] bg-[#F8FAFC] border-r border-slate-100 p-6 flex flex-col">
+        <div className="w-[320px] bg-[#F8FAFC] border-r border-slate-100 p-6 flex flex-col overflow-y-auto">
           <div className="mb-6 px-2">
             <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Service Categories</h4>
             <div className="space-y-1.5">
@@ -343,7 +389,7 @@ export function Navbar() {
         </div>
 
         {/* CENTER PANEL: Services (Flexible Width) */}
-        <div className="flex-1 p-10 bg-white">
+        <div className="flex-1 p-10 bg-white overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}

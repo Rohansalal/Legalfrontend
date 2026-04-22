@@ -61,11 +61,11 @@ export function Footer() {
             <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Key Services</h4>
             <ul className="space-y-4">
               {[
-                { name: 'Business Registration', href: '/business-registration' },
-                { name: 'Property Services', href: '/property' },
-                { name: 'NGO Support', href: '/ngo-services' },
-                { name: 'Lawyer Consultation', href: '/lawyer-services' },
-                { name: 'Global Expansion', href: '/global-business' }
+                { name: 'Business Registration', href: '/services/business-registration' },
+                { name: 'Property Services', href: '/services/property' },
+                { name: 'NGO Support', href: '/services/ngo-services' },
+                { name: 'Lawyer Consultation', href: '/services/lawyer-services' },
+                { name: 'Global Expansion', href: '/services/global-business' }
               ].map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-center group">
