@@ -3,91 +3,93 @@ import { Footer } from '@/components/footer';
 import { CTASection } from '@/components/cta-section';
 import Link from 'next/link';
 import {
-  Building2,
-  FileText,
-  Award,
-  Calculator,
-  Landmark,
+  FileCheck,
+  TrendingUp,
+  Briefcase,
+  BadgeCheck,
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Business Registration Services - Legal Door',
+  title: 'Compliances Services - Legal Door',
   description:
-    'Complete business registration services — company registration, NGO / RWA / RERA / startup, government licenses, taxation and institutional setup. Lawyer-assisted, fast, compliant.',
+    'Annual compliances, change in business, closure / conversion and certifications — ROC, GST, ITR, ISO, BIS handled by experienced corporate counsel and CAs.',
 };
 
 const categories = [
   {
-    id: 'company-registration',
-    label: 'A. Company Registration',
-    icon: Building2,
+    id: 'company-compliances',
+    label: 'A. Company Compliances',
+    icon: FileCheck,
     color: 'bg-blue-50 text-blue-600 border-blue-100',
-    description: 'Register Pvt Ltd, Public Ltd, LLP, OPC, GST, Section 8, Producer, Proprietorship, Partnership, NBFC and more under the Companies Act, 2013.',
+    description: 'Annual ROC filings (AOC-4, MGT-7), accounting, audit and GST filing for Pvt Ltd, Public Ltd, LLP, OPC, Section 8, NBFC, Producer and Nidhi companies.',
     services: [
-      'Private Ltd. Company', 'Public Ltd. Company', 'LLP Registration',
-      'One Person Company (OPC)', 'GST Registration', 'Section 8 Company',
-      'Producer Company', 'Proprietorship Firm', 'Partnership Firm', 'NBFC Registration',
+      'Annual Compliances — Pvt. Ltd.',
+      'Annual Compliances — Public Ltd.',
+      'Annual Compliances — LLP',
+      'Annual Compliances — OPC',
+      'Annual Compliances — Nidhi Company',
+      'Annual Compliances — Section 8',
+      'Annual Compliances — Producer Company',
+      'Annual Compliances — NBFC',
+      'Accounting & Book Keeping',
+      'GST Filing',
     ],
-    href: '/services/business-registration/company-registration',
+    href: '/services/compliances/company-compliances',
   },
   {
-    id: 'other-registration',
-    label: 'B. Registration',
-    icon: FileText,
+    id: 'change-in-business',
+    label: 'B. Change in Business',
+    icon: TrendingUp,
     color: 'bg-orange-50 text-orange-600 border-orange-100',
-    description: 'Society, Trust, RWA, RERA promoters, IEC, FCRA / FEMA, ESI & PF, Telemarketing, Startup India and 12A / 80G income-tax exemptions.',
+    description: 'Name, place, object, directors, capital, share transfers, dematerialization, KYC and fund-raising — all post-incorporation changes filed with MCA.',
     services: [
-      'Society Registration (NGO)', 'Trust Registration (NGO)', '12A & 80G',
-      'RWA Registration', 'RERA — Promoters & Project', 'Import Export Code (IEC)',
-      'FCRA / FEMA Registration', 'ESI & PF Registration', 'Telemarketing Registration', 'Startup India Registration',
+      'Change Company Name',
+      'Change of Place of Company',
+      'Change of Object of Company',
+      'Change of Directors',
+      'Increase Authorized Capital',
+      'Increase Paid-up Capital',
+      'Director (DIR-3) KYC',
+      'Dematerialization of Shares',
+      'Share Transfer',
+      'Fund Raising',
     ],
-    href: '/services/business-registration/other-registration',
+    href: '/services/compliances/change-in-business',
   },
   {
-    id: 'license',
-    label: 'C. License',
-    icon: Award,
+    id: 'closure-convert-others',
+    label: 'C. Closure, Convert & Others',
+    icon: Briefcase,
     color: 'bg-emerald-50 text-emerald-600 border-emerald-100',
-    description: 'FSSAI, AYUSH, Drug, Liquor, Factory, Trade, Shop & Establishment and specialist financial / security licenses.',
+    description: 'Convert Pvt Ltd to Public, LLP to Pvt, close LLP / Pvt / Public / NGO and obtain CA / CS / CMA / Advocate audit reports.',
     services: [
-      'FSSAI License', 'AYUSH License', 'Drug License', 'Liquor License', 'Factory License',
-      'Small Finance Bank License', 'FFMC License', 'PASARA License', 'Trade License', 'Shop & Establishment',
+      'Convert Pvt Ltd to Public Ltd',
+      'Convert LLP to Pvt Ltd',
+      'Close LLP',
+      'Close Pvt. Ltd.',
+      'Close Public Ltd.',
+      'Close NGO',
+      'CA Audit & Report',
+      'CS Audit & Report',
+      'CMA Audit & Report',
+      'Advocate Audit & Report',
     ],
-    href: '/services/business-registration/license',
+    href: '/services/compliances/closure-convert-others',
   },
   {
-    id: 'taxation',
-    label: 'D. Taxation',
-    icon: Calculator,
+    id: 'certification',
+    label: 'D. Certification',
+    icon: BadgeCheck,
     color: 'bg-pink-50 text-pink-600 border-pink-100',
-    description: 'Income Tax Returns for individuals, companies, NGOs and political parties; tax planning, Tax Audit and GST Audit by experienced tax counsel.',
-    services: [
-      'ITR for Individual', 'ITR for Companies', 'ITR for NGO', 'ITR for Political Party',
-      'Tax Planning — Individual', 'Tax Planning — Corporate', 'Tax Audit', 'GST Audit',
-    ],
-    href: '/services/business-registration/taxation',
-  },
-  {
-    id: 'institutional-setup',
-    label: 'E. Institutional Setup',
-    icon: Landmark,
-    color: 'bg-indigo-50 text-indigo-600 border-indigo-100',
-    description: 'End-to-end legal and licensing support for setting up political parties, universities, schools, hospitals, petrol pumps and CSR programs.',
-    services: [
-      'Political Party Formation & License',
-      'University Setup & License',
-      'School Setup & License',
-      'Hospital Setup & License',
-      'Petrol Pump License',
-      'CSR Advisory',
-    ],
-    href: '/services/business-registration/institutional-setup',
+    description: 'ISO and BIS certifications for quality management, product standards and Indian compliance.',
+    services: ['ISO Certification', 'BIS Certification'],
+    href: '/services/compliances/certification',
   },
 ];
 
-export default function BusinessRegistrationPage() {
+export default function CompliancesPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -97,15 +99,15 @@ export default function BusinessRegistrationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-blue-300 font-bold text-[10px] uppercase tracking-wider mb-6">
             <CheckCircle2 className="w-3 h-3" />
-            Government-Certified Experts
+            ROC, GST & Audit Specialists
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6">
-            Business <br />
-            <span className="text-blue-400 italic">Registration</span>
+            Corporate <br />
+            <span className="text-blue-400 italic">Compliances</span>
           </h1>
           <p className="text-xl text-slate-300 font-medium max-w-2xl leading-relaxed">
-            From startup incorporation to government licenses, taxation and institutional setup —
-            we handle every aspect of your business registration with precision and speed.
+            From annual ROC filings to company closure and certifications — comprehensive
+            compliance services to keep your business legally healthy.
           </p>
         </div>
       </section>
@@ -114,10 +116,10 @@ export default function BusinessRegistrationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
-              Choose Your <span className="text-primary italic">Registration Type</span>
+              Choose Your <span className="text-primary italic">Compliance Service</span>
             </h2>
             <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto">
-              44+ registration, licensing, taxation and institutional services across 5 categories.
+              32+ compliance, change-management, closure and certification services.
             </p>
           </div>
 
