@@ -201,7 +201,7 @@ const complianceCategories = [
     title: 'Company Compliances',
     icon: FileCheck,
     description: 'Annual filings, GST, ITR & accounting for all company types.',
-    href: '/services/compliances/company-compliances',
+    href: '/services/compliances',
     subServices: [
       { title: 'Annual Compliances for Pvt. Ltd.', href: '/services/compliances/company-compliances/annual-pvt-ltd' },
       { title: 'Annual Compliances for Public Ltd.', href: '/services/compliances/company-compliances/annual-public-ltd' },
@@ -220,7 +220,7 @@ const complianceCategories = [
     title: 'Change in Business',
     icon: TrendingUp,
     description: 'Name, directors, capital, shares & other business changes.',
-    href: '/services/compliances/change-in-business',
+    href: '/services/compliances',
     subServices: [
       { title: 'Change Company Name', href: '/services/compliances/change-in-business/change-company-name' },
       { title: 'Change of Place of the Company', href: '/services/compliances/change-in-business/change-place' },
@@ -239,7 +239,7 @@ const complianceCategories = [
     title: 'Closure, Convert & Others',
     icon: Briefcase,
     description: 'Company conversions, closures & professional audit reports.',
-    href: '/services/compliances/closure-convert-others',
+    href: '/services/compliances',
     subServices: [
       { title: 'Convert Pvt. Ltd. to Public Ltd.', href: '/services/compliances/closure-convert-others/pvt-to-public' },
       { title: 'Convert LLP to Pvt. Ltd.', href: '/services/compliances/closure-convert-others/llp-to-pvt' },
@@ -411,10 +411,10 @@ const globalBusinessCategories = [
     description: 'International setup, compliance and banking.',
     href: '/services/global-business',
     subServices: [
-      { title: 'International Formation', href: '/services/global-business/international-company-formation' },
-      { title: 'Global Compliance', href: '/services/global-business/global-compliance' },
-      { title: 'Global Banking', href: '/services/global-business/global-banking' },
-      { title: 'Global Expansion', href: '/services/global-business/global-expansion' },
+      { title: 'International Formation', href: '/services/global-business' },
+      { title: 'Global Compliance', href: '/services/global-business' },
+      { title: 'Global Banking', href: '/services/global-business' },
+      { title: 'Global Expansion', href: '/services/global-business' },
     ],
   },
   {
