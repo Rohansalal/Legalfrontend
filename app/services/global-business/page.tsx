@@ -30,6 +30,19 @@ const categories = [
       { name: 'Global Expansion', href: '/services/global-business/global-expansion' },
     ],
     cta: 'Expand Globally',
+    subcategories: [
+      {
+        title: 'Company Registration by Region',
+        description: 'Detailed company formation services across different jurisdictions',
+        items: [
+          { name: 'Americas', href: '/services/global-business/company-registration/americas' },
+          { name: 'Europe', href: '/services/global-business/company-registration/europe' },
+          { name: 'Asia-Pacific', href: '/services/global-business/company-registration/asia-pacific' },
+          { name: 'UAE & Middle East', href: '/services/global-business/company-registration/uae-middle-east' },
+          { name: 'Offshore Jurisdictions', href: '/services/global-business/company-registration/offshore' }
+        ]
+      }
+    ]
   },
   {
     title: 'Educational Law',
@@ -49,7 +62,57 @@ const categories = [
       { name: 'Counseling, Admission & Training', href: '/services/global-business/educational-law/counseling-admission' },
     ],
     cta: 'Explore Education Law',
-  },
+    subcategories: [
+      {
+        title: 'University/College/School Services',
+        description: 'Comprehensive legal services for educational institutions',
+        items: [
+          { name: 'Strategic Planning & Implementation', href: '#' },
+          { name: 'Licensing & Regulatory Approvals', href: '#' },
+          { name: 'Regulatory Compliance', href: '#' },
+          { name: 'Student Rights Protection', href: '#' },
+          { name: 'Policy Drafting & Review', href: '#' },
+          { name: 'Institutional Governance Advice', href: '#' },
+          { name: 'Dispute Negotiation', href: '#' },
+          { name: 'Special Education Advocacy', href: '#' },
+          { name: 'Accreditation & Licensing', href: '#' },
+          { name: 'Contract Review', href: '#' },
+          { name: 'Intellectual Property Services', href: '#' },
+          { name: 'Government Grant Compliance', href: '#' },
+          { name: 'Legal Advice for School Boards', href: '#' },
+          { name: 'Handling Harassment Cases', href: '#' }
+        ]
+      },
+      {
+        title: 'Legal Exam Coaching',
+        description: 'Preparation for various competitive law exams',
+        items: [
+          { name: 'CLAT / AILET', href: '#' },
+          { name: 'Judicial Services', href: '#' },
+          { name: 'Civil Services', href: '#' },
+          { name: 'Law for IAS', href: '#' },
+          { name: 'Law for UGC-NET', href: '#' },
+          { name: 'Company Secretary', href: '#' },
+          { name: 'Patent Agent Examination', href: '#' },
+          { name: 'Trademark Agent Exam', href: '#' }
+        ]
+      },
+      {
+        title: 'Counseling, Admission & Training',
+        description: 'Guidance and training for legal education and career development',
+        items: [
+          { name: 'Career Counseling', href: '#' },
+          { name: 'LLB Admission', href: '#' },
+          { name: 'LLM Admission', href: '#' },
+          { name: 'PhD Admission', href: '#' },
+          { name: 'Legal Drafting & Pleading Training', href: '#' },
+          { name: 'Moot Court Competition', href: '#' },
+          { name: 'Study Abroad', href: '#' },
+          { name: 'Foreign Immigration & Visa', href: '#' }
+        ]
+      }
+    ]
+  }
 ];
 
 export default function GlobalBusinessPage() {
@@ -95,6 +158,33 @@ export default function GlobalBusinessPage() {
                   ))}
                 </ul>
               </div>
+
+              {cat.subcategories && (
+                <div className="border-t border-slate-100 pt-6 mb-8 flex-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">
+                    Service Categories
+                  </span>
+                  <div className="space-y-4">
+                    {cat.subcategories.map((subcat, index) => (
+                      <div key={index} className="space-y-3">
+                        <h4 className="font-black text-slate-900 mb-2">{subcat.title}</h4>
+                        <p className="text-sm text-slate-600">{subcat.description}</p>
+                        <div className="space-y-2">
+                          {subcat.items.map((item, idx) => (
+                            <Link
+                              key={idx}
+                              href={item.href}
+                              className="block px-4 py-2 text-sm font-medium text-slate-600 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors border border-slate-200"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="border-t border-slate-100 pt-6 mb-8 flex-1">
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">

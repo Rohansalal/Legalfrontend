@@ -46,7 +46,7 @@ import { cn } from '@/lib/utils';
 const businessRegistrationCategories = [
   {
     id: 'company-registration',
-    title: 'A. Company Registration',
+    title: 'Company Registration',
     icon: Building2,
     description: 'Pvt Ltd, Public Ltd, LLP, OPC, NBFC & more.',
     href: '/services/business-registration/company-registration',
@@ -65,7 +65,7 @@ const businessRegistrationCategories = [
   },
   {
     id: 'other-registration',
-    title: 'B. Registration',
+    title: 'Other Registration',
     icon: FileText,
     description: 'Society, Trust, RWA, RERA, IEC, FCRA, ESI/PF, Telemarketing, Startup India, 12A/80G.',
     href: '/services/business-registration/other-registration',
@@ -84,7 +84,7 @@ const businessRegistrationCategories = [
   },
   {
     id: 'license',
-    title: 'C. License',
+    title: 'License',
     icon: Award,
     description: 'FSSAI, AYUSH, Drug, Liquor, Factory, Trade, Shop & Establishment and specialist licenses.',
     href: '/services/business-registration/license',
@@ -103,7 +103,7 @@ const businessRegistrationCategories = [
   },
   {
     id: 'taxation',
-    title: 'D. Taxation',
+    title: 'Taxation',
     icon: TrendingUp,
     description: 'ITR, Tax Planning, Tax Audit and GST Audit for individuals, companies and NGOs.',
     href: '/services/business-registration/taxation',
@@ -120,7 +120,7 @@ const businessRegistrationCategories = [
   },
   {
     id: 'institutional-setup',
-    title: 'E. Institutional Setup',
+    title: 'Institutional Setup',
     icon: Landmark,
     description: 'Political party, university, school, hospital, petrol pump and CSR setup.',
     href: '/services/business-registration/institutional-setup',
@@ -138,7 +138,7 @@ const businessRegistrationCategories = [
 const propertyCategories = [
   {
     id: 'prop-registration',
-    title: 'A. Registration',
+    title: 'Registration',
     icon: Landmark,
     description: 'Sale, gift, lease, will, GPA & all property deed registrations.',
     href: '/services/property',
@@ -157,7 +157,7 @@ const propertyCategories = [
   },
   {
     id: 'prop-verification',
-    title: 'B. Verification, Report & Certificate',
+    title: 'Verification, Report & Certificate',
     icon: ShieldCheck,
     description: 'Title search, due diligence, CERSAI, legal heir & succession certificates.',
     href: '/services/property',
@@ -176,7 +176,7 @@ const propertyCategories = [
   },
   {
     id: 'prop-real-estate',
-    title: 'C. Real Estate & Infrastructure',
+    title: 'Real Estate & Infrastructure',
     icon: Building2,
     description: 'RERA, FDI, SEZ, PPP, project finance, land acquisition & litigation.',
     href: '/services/property',
@@ -198,7 +198,7 @@ const propertyCategories = [
 const complianceCategories = [
   {
     id: 'company-compliances',
-    title: 'D-1 Company Compliances',
+    title: 'Company Compliances',
     icon: FileCheck,
     description: 'Annual filings, GST, ITR & accounting for all company types.',
     href: '/services/compliances/company-compliances',
@@ -217,7 +217,7 @@ const complianceCategories = [
   },
   {
     id: 'change-in-business',
-    title: 'D-2 Change in Business',
+    title: 'Change in Business',
     icon: TrendingUp,
     description: 'Name, directors, capital, shares & other business changes.',
     href: '/services/compliances/change-in-business',
@@ -236,7 +236,7 @@ const complianceCategories = [
   },
   {
     id: 'closure-convert-others',
-    title: 'D-3 Closure, Convert & Others',
+    title: 'Closure, Convert & Others',
     icon: Briefcase,
     description: 'Company conversions, closures & professional audit reports.',
     href: '/services/compliances/closure-convert-others',
@@ -255,7 +255,7 @@ const complianceCategories = [
   },
   {
     id: 'certification',
-    title: 'D-4 Certification',
+    title: 'Certification',
     icon: Award,
     description: 'ISO and BIS certification consultancy and accreditation support.',
     href: '/services/compliances/certification',
@@ -269,7 +269,7 @@ const complianceCategories = [
 const lawyerCategories = [
   {
     id: 'lawyer-ipr',
-    title: 'A. IPR Services',
+    title: 'IPR Services',
     icon: Sparkles,
     description: 'Trademark, Copyright and Patent registration, opposition & litigation.',
     href: '/services/lawyer-services/ipr-services',
@@ -287,7 +287,7 @@ const lawyerCategories = [
   },
   {
     id: 'lawyer-corporate',
-    title: 'B. Corporate Services',
+    title: 'Corporate Services',
     icon: Building2,
     description: 'Insolvency, M&A, IPO, banking, insurance, securities & trade law.',
     href: '/services/lawyer-services/corporate-services',
@@ -304,7 +304,7 @@ const lawyerCategories = [
   },
   {
     id: 'lawyer-aviation',
-    title: 'C. Aviation & Maritime Law',
+    title: 'Aviation & Maritime Law',
     icon: Globe,
     description: 'Aviation licensing (DGCA / AERA / AAI / BCAS), maritime & international law.',
     href: '/services/lawyer-services/aviation-maritime',
@@ -323,7 +323,7 @@ const lawyerCategories = [
   },
   {
     id: 'lawyer-family',
-    title: 'D. Family Law',
+    title: 'Family Law',
     icon: Users,
     description: 'Divorce, custody, alimony, dowry, domestic violence & matrimonial transfers.',
     href: '/services/lawyer-services/family-law',
@@ -342,7 +342,7 @@ const lawyerCategories = [
   },
   {
     id: 'lawyer-criminal',
-    title: 'E. Criminal Law',
+    title: 'Criminal Law',
     icon: Gavel,
     description: 'FIR, bail, appeals, white-collar, POCSO, cheque bounce & cyber crime.',
     href: '/services/lawyer-services/criminal-law',
@@ -366,7 +366,7 @@ const lawyerCategories = [
 const documentationCategories = [
   {
     id: 'legal-docs',
-    title: 'A. Legal',
+    title: 'Legal',
     icon: Scale,
     description: 'Legal notices, affidavits, agreements & attestation.',
     href: '/services/documentation/legal',
@@ -384,7 +384,7 @@ const documentationCategories = [
   },
   {
     id: 'business-corporate-docs',
-    title: 'B. Business / Corporate',
+    title: 'Business / Corporate',
     icon: Briefcase,
     description: 'Corporate letters, agreements & business documents.',
     href: '/services/documentation/business-corporate',
@@ -406,7 +406,7 @@ const documentationCategories = [
 const globalBusinessCategories = [
   {
     id: 'global-main',
-    title: 'A. Global Expansion',
+    title: 'Global Expansion',
     icon: Globe,
     description: 'International setup, compliance and banking.',
     href: '/services/global-business',
@@ -419,7 +419,7 @@ const globalBusinessCategories = [
   },
   {
     id: 'edu-institutional',
-    title: 'B. Education — Institutional',
+    title: 'Education — Institutional',
     icon: Award,
     description: 'University / college / school setup, licensing, compliance & governance.',
     href: '/services/global-business/educational-law/institutional',
@@ -438,7 +438,7 @@ const globalBusinessCategories = [
   },
   {
     id: 'edu-courses',
-    title: 'C. Education — Legal Exam Coaching',
+    title: 'Education — Legal Exam Coaching',
     icon: FileCheck,
     description: 'CLAT, Judicial Services, Civil Services, CS, Patent / Trademark Agent exams.',
     href: '/services/global-business/educational-law/courses',
@@ -455,7 +455,7 @@ const globalBusinessCategories = [
   },
   {
     id: 'edu-counseling',
-    title: 'D. Education — Counseling, Admission & Training',
+    title: 'Education — Counseling, Admission & Training',
     icon: Sparkles,
     description: 'Career counseling, LLB / LLM / PhD admission, drafting training & study abroad.',
     href: '/services/global-business/educational-law/counseling-admission',

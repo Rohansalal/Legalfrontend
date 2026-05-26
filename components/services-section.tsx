@@ -49,6 +49,69 @@ const categories = [
     ]
   },
   { 
+    id: 'global-services',
+    label: 'Global Services',
+    icon: Globe,
+    description: 'International legal solutions for businesses expanding worldwide.',
+    subServices: [
+      { 
+        title: 'Company Registration - Americas', 
+        href: '/services/global-business/company-registration/americas', 
+        icon: Building2 
+      },
+      { 
+        title: 'Company Registration - Europe', 
+        href: '/services/global-business/company-registration/europe', 
+        icon: Building2 
+      },
+      { 
+        title: 'Company Registration - Asia-Pacific', 
+        href: '/services/global-business/company-registration/asia-pacific', 
+        icon: Building2 
+      },
+      { 
+        title: 'Company Registration - UAE & Middle East', 
+        href: '/services/global-business/company-registration/uae-middle-east', 
+        icon: Building2 
+      },
+      { 
+        title: 'Company Registration - Offshore Jurisdictions', 
+        href: '/services/global-business/company-registration/offshore', 
+        icon: Building2 
+      },
+      { 
+        title: 'Global Compliance & FEMA', 
+        href: '/services/global-business/global-compliance', 
+        icon: ShieldCheck 
+      },
+      { 
+        title: 'Global Banking & Treasury', 
+        href: '/services/global-business/global-banking', 
+        icon: Calculator 
+      },
+      { 
+        title: 'Cross-Border Expansion Strategy', 
+        href: '/services/global-business/global-expansion', 
+        icon: TrendingUp 
+      },
+      { 
+        title: 'Educational Institution Setup', 
+        href: '/services/global-business/educational-law/institutional', 
+        icon: Award 
+      },
+      { 
+        title: 'Legal Exam Coaching', 
+        href: '/services/global-business/educational-law/courses', 
+        icon: FileCheck 
+      },
+      { 
+        title: 'Student Visa & Immigration Services', 
+        href: '/services/global-business/educational-law/counseling-admission', 
+        icon: Users 
+      }
+    ]
+  },
+  { 
     id: 'compliance', 
     label: 'Compliance', 
     icon: FileCheck,
