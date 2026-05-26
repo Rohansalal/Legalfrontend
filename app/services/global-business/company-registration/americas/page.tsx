@@ -6,11 +6,6 @@ import { Globe, Building2, ArrowRight, CheckCircle2, ShieldCheck, Users, Landmar
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export const metadata = {
-  title: 'Company Registration - Americas - Legal Door',
-  description: 'Expert legal services for company formation across the Americas: USA, Canada, Mexico, Panama, Belize, Barbados, Dominica, and Chile.',
-};
-
 const registrationOptions = [
   {
     region: 'United States',
@@ -157,7 +152,7 @@ export default function AmericasCompanyRegistration() {
             {serviceFeatures.map((feature, index) => (
               <div key={index} className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  {feature.icon}
+                  <feature.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-black text-slate-900 mb-2">{feature.title}</h3>

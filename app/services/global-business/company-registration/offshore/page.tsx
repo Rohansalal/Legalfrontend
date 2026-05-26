@@ -6,11 +6,6 @@ import { Globe, Building2, ArrowRight, CheckCircle2, ShieldCheck, Users, Landmar
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export const metadata = {
-  title: 'Company Registration - Offshore Jurisdictions - Legal Door',
-  description: 'Expert legal services for offshore company formation in Belize, British Virgin Islands, Cayman Islands, Mauritius, Seychelles, Dominica, and Antigua & Barbuda.',
-};
-
 const registrationOptions = [
   {
     region: 'Belize',
@@ -130,7 +125,7 @@ export default function OffshoreCompanyRegistration() {
 
         <div className="space-y-12">
           {registrationOptions.map((region, index) => (
-            <div key={index} className="bg-white border border-slate-100 rounded-[30px] p-8 hover:shadow-2xl transition_all duration-500">
+            <div key={index} className="bg-white border border-slate-100 rounded-[30px] p-8 hover:shadow-2xl transition-all duration-500">
               <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <Globe className="w-5 h-5 text-primary" />
                 {region.region}
@@ -138,7 +133,7 @@ export default function OffshoreCompanyRegistration() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {region.entities.map((entity, idx) => (
-                  <div key={idx} className="bg-slate-50 p-6 rounded-[20px] border border-slate-200 hover:border-primary hover:bg-primary/5 transition_all duration-300">
+                  <div key={idx} className="bg-slate-50 p-6 rounded-[20px] border border-slate-200 hover:border-primary hover:bg-primary/5 transition-all duration-300">
                     <h3 className="text-xl font-black text-slate-900 mb-3">{entity.name}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed mb-4">{entity.description}</p>
                     <button 
@@ -162,21 +157,21 @@ export default function OffshoreCompanyRegistration() {
             {serviceFeatures.map((feature, index) => (
               <div key={index} className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  {feature.icon}
+                  <feature.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-black text-slate-900 mb-2">{feature.title}</h3>
                   <p className="text-slate-600 leading-relaxed">{feature.description}</p>
                 </div>
               </div>
-            )}
+            ))}
           </div>
         </div>
 
         <div className="mt-16 text-center">
           <Link 
             href="/services/global-business"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white border border-sale-200 text-slate-900 font-black text-sm hover:bg-slate-900 hover:text-white hover:border-slate-900 transition_all duration-300 shadow-sm hover:shadow-2xl hover:shadow-slate-200"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-900 font-black text-sm hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300 shadow-sm hover:shadow-2xl hover:shadow-slate-200"
           >
             Back to Global Business 
             <ArrowRight className="w-4 h-4" />
