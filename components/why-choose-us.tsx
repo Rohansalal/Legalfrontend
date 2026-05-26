@@ -44,49 +44,49 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
+    <section className="py-14 sm:py-20 md:py-24 lg:py-28 bg-white">
+      <div className="max-w-7xl 3xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
+
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Why Legal Door</h2>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
+            <h2 className="text-primary font-bold tracking-widest uppercase text-xs sm:text-sm mb-3 sm:mb-4">Why Legal Door</h2>
+            <h3 className="text-3xl xs:text-4xl sm:text-4xl md:text-5xl lg:text-5xl 3xl:text-6xl font-black text-slate-900 leading-tight mb-6 sm:mb-8">
               The Smarter Way to <br />
               <span className="text-primary italic">Scale Your Business</span>
             </h3>
-            
-            <div className="space-y-6">
-              <p className="text-lg text-slate-600 leading-relaxed">
+
+            <div className="space-y-5 sm:space-y-6">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                 We combine legal expertise with cutting-edge technology to provide a seamless registration experience for entrepreneurs.
               </p>
-              
-              <div className="grid grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+
+              <div className="grid grid-cols-2 gap-6 sm:gap-8 pt-5 sm:pt-6 border-t border-slate-100">
                 <div>
-                  <p className="text-4xl font-black text-slate-900 mb-1">15k+</p>
-                  <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">Registrations</p>
+                  <p className="text-3xl sm:text-4xl font-black text-slate-900 mb-1">15k+</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">Registrations</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-black text-slate-900 mb-1">4.9/5</p>
-                  <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">User Rating</p>
+                  <p className="text-3xl sm:text-4xl font-black text-slate-900 mb-1">4.9/5</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">User Rating</p>
                 </div>
               </div>
 
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="mt-8 px-8 py-4 bg-slate-950 text-white rounded-2xl font-black text-lg shadow-2xl shadow-slate-900/20"
+                className="mt-6 sm:mt-8 px-6 sm:px-8 py-3.5 sm:py-4 bg-slate-950 text-white rounded-xl sm:rounded-2xl font-black text-sm sm:text-base lg:text-lg shadow-2xl shadow-slate-900/20"
               >
                 Learn Our History
               </motion.button>
             </div>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
             {features.map((feature, i) => (
               <motion.div
                 key={i}
@@ -95,13 +95,13 @@ export function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300"
+                className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300"
               >
-                <div className={`w-12 h-12 rounded-2xl ${feature.color} flex items-center justify-center mb-5`}>
-                  <feature.icon className="w-6 h-6" />
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl ${feature.color} flex items-center justify-center mb-4 sm:mb-5`}>
+                  <feature.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h4 className="font-black text-slate-900 mb-2">{feature.title}</h4>
-                <p className="text-sm text-slate-500 leading-relaxed">{feature.description}</p>
+                <h4 className="font-black text-slate-900 mb-1.5 sm:mb-2 text-sm sm:text-base">{feature.title}</h4>
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>

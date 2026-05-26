@@ -1,13 +1,25 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Urbanist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const urbanist = Urbanist({ 
+const urbanist = Urbanist({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: '--font-urbanist',
+  display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#022d54' },
+  ],
+}
 
 export const metadata: Metadata = {
   title: 'Legal Door - Expert Legal Services for Business Success',

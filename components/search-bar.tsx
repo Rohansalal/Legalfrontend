@@ -94,26 +94,28 @@ export function GlobalSearchBar() {
   };
 
   return (
-    <div className="relative max-w-3xl mx-auto group" ref={containerRef}>
+    <div className="relative max-w-3xl 3xl:max-w-4xl mx-auto group" ref={containerRef}>
       {/* Search Input Container */}
       <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-pink-600 to-indigo-500 rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-500" />
-      <div className="relative flex items-center bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-        <div className="pl-6 flex items-center pointer-events-none">
-          <Search className="h-6 w-6 text-slate-400 group-focus-within:text-orange-400 transition-colors" />
+      <div className="relative flex items-center bg-slate-900 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+        <div className="pl-3 sm:pl-5 lg:pl-6 flex items-center pointer-events-none shrink-0">
+          <Search className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-slate-400 group-focus-within:text-orange-400 transition-colors" />
         </div>
         <Input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search legal services (e.g. Pvt Ltd, GST, MSME)"
-          className="flex-1 bg-transparent border-none text-white placeholder:text-slate-500 focus-visible:ring-0 py-8 text-lg px-4 font-medium"
+          placeholder="Search services…"
+          aria-label="Search legal services"
+          className="flex-1 min-w-0 bg-transparent border-none text-white placeholder:text-slate-500 focus-visible:ring-0 py-4 sm:py-6 lg:py-8 text-sm sm:text-base lg:text-lg px-2 sm:px-3 lg:px-4 font-medium"
         />
-        <div className="pr-3">
-          <Button 
-            className="h-14 px-10 rounded-xl text-lg font-black bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all active:scale-95 flex items-center gap-2 group/btn"
+        <div className="pr-1.5 sm:pr-2.5 lg:pr-3 shrink-0">
+          <Button
+            aria-label="Search"
+            className="h-9 px-3 sm:h-11 sm:px-5 lg:h-14 lg:px-10 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-lg font-black bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all active:scale-95 flex items-center gap-1 sm:gap-2 group/btn"
           >
-            Search
-            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+            <span className="hidden xs:inline">Search</span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 group-hover/btn:translate-x-1 transition-transform" />
           </Button>
         </div>
       </div>
@@ -159,9 +161,11 @@ export function GlobalSearchBar() {
             </div>
             
             {/* Dropdown Footer */}
-            <div className="bg-slate-50 p-3 border-t border-slate-100 flex justify-between items-center px-6">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-tight">Search powered by Legal Door Intelligence</span>
-              <span className="text-[10px] font-bold text-primary">Press Enter to Search</span>
+            <div className="bg-slate-50 p-3 border-t border-slate-100 flex flex-col xs:flex-row gap-1 xs:gap-2 xs:justify-between xs:items-center px-4 sm:px-6">
+              <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-tight">
+                <span className="hidden sm:inline">Search powered by </span>Legal Door Intelligence
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-bold text-primary">Press Enter to Search</span>
             </div>
           </motion.div>
         )}

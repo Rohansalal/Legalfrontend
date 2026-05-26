@@ -6,29 +6,29 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight
 
 export function Footer() {
   return (
-    <footer className="bg-slate-950 text-white pt-24 pb-12 overflow-hidden relative">
+    <footer className="bg-slate-950 text-white pt-14 sm:pt-20 md:pt-24 pb-8 sm:pb-10 md:pb-12 overflow-hidden relative">
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -mr-48 -mt-24" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+      <div className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-primary/10 rounded-full blur-[120px] -mr-36 sm:-mr-48 -mt-16 sm:-mt-24" />
+
+      <div className="max-w-7xl 3xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 mb-12 sm:mb-16 md:mb-20">
           {/* Company Info */}
-          <div className="space-y-8">
+          <div className="space-y-5 sm:space-y-6 lg:space-y-8 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block">
               <Image
                 src="/images/logo.png"
                 alt="Legal Door"
                 width={100}
                 height={100}
-                className="h-16 w-auto brightness-0 invert"
+                className="h-12 sm:h-14 lg:h-16 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed font-medium">
+            <p className="text-slate-400 text-sm leading-relaxed font-medium max-w-md">
               Legal Door is a premium legal-tech platform dedicated to providing world-class legal, taxation, and business compliance services with absolute precision and integrity.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group">
+                <a key={i} href="#" aria-label="Social link" className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group">
                   <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                 </a>
               ))}
@@ -36,9 +36,9 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-8">
-            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Organization</h4>
-            <ul className="space-y-4">
+          <div className="space-y-5 sm:space-y-6 lg:space-y-8">
+            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-orange-400">Organization</h4>
+            <ul className="space-y-3 sm:space-y-4">
               {[
                 { name: 'About Us', href: '/about' },
                 { name: 'Our Team', href: '/team' },
@@ -57,9 +57,9 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="space-y-8">
-            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Key Services</h4>
-            <ul className="space-y-4">
+          <div className="space-y-5 sm:space-y-6 lg:space-y-8">
+            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-orange-400">Key Services</h4>
+            <ul className="space-y-3 sm:space-y-4">
               {[
                 { name: 'Business Registration', href: '/services/business-registration' },
                 { name: 'Property Services', href: '/services/property' },
@@ -78,9 +78,9 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8">
-            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-orange-400">Corporate Office</h4>
-            <ul className="space-y-4">
+          <div className="space-y-5 sm:space-y-6 lg:space-y-8">
+            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-orange-400">Corporate Office</h4>
+            <ul className="space-y-3 sm:space-y-4">
               <li className="text-slate-400 hover:text-white transition-colors text-sm font-bold flex items-start group cursor-default">
                 <MapPin className="w-4 h-4 mr-2 text-primary shrink-0 mt-0.5" />
                 <span>
@@ -104,13 +104,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">
+        <div className="pt-8 sm:pt-10 md:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-center md:text-left">
+          <p className="text-slate-500 text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
             © 2024 Legal Door. All Rights Reserved.
           </p>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
             {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((text) => (
-              <a key={text} href="#" className="text-slate-500 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">
+              <a key={text} href="#" className="text-slate-500 hover:text-white transition-colors text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
                 {text}
               </a>
             ))}

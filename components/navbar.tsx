@@ -486,6 +486,7 @@ const mainNavLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('');
+  const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -501,12 +502,13 @@ export function Navbar() {
 
     return (
       /*
-       * Width ladder:
-       *  lg  (1024–1279 px) → 700 px   compact laptops / Surface / small Windows
-       *  xl  (1280–1535 px) → 860 px   standard 13-14" MacBook / 1080p Windows
-       *  2xl (1536 px+)     → 1020 px  large MacBook Pro, 2K / 4K monitors
+       * Fluid width ladder — uses min() so the menu never exceeds viewport.
+       *  lg  (1024–1279 px) → ~92vw, max 700 px   compact laptops / Surface
+       *  xl  (1280–1535 px) → ~860 px             standard 13-14" laptops
+       *  2xl (1536–1919 px) → 1020 px             large MacBook Pro, 2K
+       *  3xl (1920 px+)     → 1180 px             4K and ultrawide
        */
-      <div className="flex w-[700px] xl:w-[860px] 2xl:w-[1020px] bg-white overflow-hidden"
+      <div className="flex w-[min(92vw,700px)] xl:w-[860px] 2xl:w-[1020px] 3xl:w-[1180px] bg-white overflow-hidden"
            style={{ maxHeight: 'calc(85vh - 80px)' }}>
 
         {/* ── Left panel: category list ── */}
@@ -630,7 +632,7 @@ export function Navbar() {
           : 'bg-transparent py-4',
       )}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-[1400px] 3xl:max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
 
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center flex-shrink-0">
@@ -639,13 +641,14 @@ export function Navbar() {
             alt="Legal Door"
             width={50}
             height={50}
-            className="h-9 sm:h-11 w-auto"
+            className="h-8 xs:h-9 sm:h-11 3xl:h-12 w-auto"
             style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
+            priority
           />
         </Link>
 
         {/* ── Desktop nav ── */}
-        <div className="hidden lg:flex items-center gap-1 mx-auto">
+        <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 mx-auto">
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-0">
               {mainNavLinks.map((nav) => (
@@ -658,9 +661,9 @@ export function Navbar() {
                       'data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent',
                       // typography
                       'font-bold tracking-tight uppercase',
-                      'text-[11px] xl:text-[12px] 2xl:text-[13px]',
-                      // spacing — tighter on lg, normal on xl+
-                      'h-auto py-2 px-2.5 xl:px-3.5',
+                      'text-[10px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[14px]',
+                      // spacing — very tight on lg (1024-1280), normal on xl+
+                      'h-auto py-2 px-1.5 xl:px-3 2xl:px-3.5',
                       // colour states
                       'transition-colors duration-150',
                       isScrolled
@@ -698,21 +701,22 @@ export function Navbar() {
         </div>
 
         {/* ── Right actions ── */}
-        <div className="flex items-center gap-3 xl:gap-4">
-          {/* Consult button — hidden on mobile */}
+        <div className="flex items-center gap-2 xl:gap-3 2xl:gap-4 shrink-0">
+          {/* Consult button — hidden on mobile, compact on lg, full on xl+ */}
           <div className="hidden md:block">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className={cn(
-                  'rounded-full font-black text-[12px] xl:text-[13px] px-5 xl:px-7 h-10 xl:h-11',
+                  'rounded-full font-black text-[11px] lg:text-[11px] xl:text-[13px] px-3.5 lg:px-3.5 xl:px-7 h-9 lg:h-9 xl:h-11',
                   'flex items-center gap-1.5 outline-none border-none group transition-all duration-200',
-                  'shadow-lg',
+                  'shadow-lg whitespace-nowrap',
                   isScrolled
                     ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white hover:shadow-orange-500/30 hover:shadow-xl'
                     : 'bg-white text-slate-900 hover:bg-slate-50 shadow-white/20',
                 )}>
                   <Headphones className="w-3.5 h-3.5 shrink-0" />
-                  Consult an Expert
+                  <span className="hidden xl:inline">Consult an Expert</span>
+                  <span className="xl:hidden">Consult</span>
                   <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </Button>
               </DropdownMenuTrigger>
@@ -749,74 +753,97 @@ export function Navbar() {
 
             <SheetContent
               side="right"
-              className="w-full sm:w-[390px] bg-white border-l-0 p-0 overflow-hidden flex flex-col"
+              className="w-full xs:w-[360px] sm:w-[390px] md:w-[440px] bg-white border-l-0 p-0 overflow-hidden flex flex-col"
             >
               {/* Sheet header */}
-              <div className="p-7 bg-slate-950 text-white relative overflow-hidden shrink-0">
+              <div className="p-5 sm:p-6 md:p-7 bg-slate-950 text-white relative overflow-hidden shrink-0">
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/15 blur-3xl rounded-full pointer-events-none" />
-                <Image src="/images/logo.png" alt="Logo" width={42} height={42} className="brightness-0 invert mb-5 relative z-10" />
-                <h2 className="text-xl font-black tracking-tight relative z-10">Our Services</h2>
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest relative z-10 mt-0.5">
+                <Image src="/images/logo.png" alt="Logo" width={42} height={42} className="brightness-0 invert mb-4 sm:mb-5 relative z-10 h-9 sm:h-10 w-auto" />
+                <h2 className="text-lg sm:text-xl font-black tracking-tight relative z-10">Our Services</h2>
+                <p className="text-white/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest relative z-10 mt-0.5">
                   Legal Door — India&apos;s Trusted Platform
                 </p>
               </div>
 
-              {/* Sheet body */}
-              <div className="flex-1 overflow-y-auto px-5 py-7 custom-scrollbar">
-                <div className="space-y-8">
-                  {mainNavLinks.map((nav) => (
-                    <div key={nav.title} className="space-y-4">
-                      {/* Section label */}
-                      <div className="flex items-center gap-3">
-                        <div className="h-px flex-1 bg-slate-100" />
-                        <span className="text-[10px] font-black text-primary uppercase tracking-[0.28em] shrink-0">
-                          {nav.title}
-                        </span>
-                        <div className="h-px flex-1 bg-slate-100" />
-                      </div>
+              {/* Sheet body — collapsible by top-level section to avoid 200+ link scroll */}
+              <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-5 sm:py-6 custom-scrollbar">
+                <div className="space-y-2">
+                  {mainNavLinks.map((nav) => {
+                    const isOpen = openMobileSection === nav.title;
+                    return (
+                      <div key={nav.title} className="rounded-xl border border-slate-100 overflow-hidden">
+                        <button
+                          type="button"
+                          onClick={() => setOpenMobileSection(isOpen ? null : nav.title)}
+                          aria-expanded={isOpen}
+                          className="w-full flex items-center justify-between gap-3 px-4 py-3.5 bg-slate-50 hover:bg-slate-100 transition-colors text-left"
+                        >
+                          <span className="text-[12px] sm:text-[13px] font-black text-slate-900 uppercase tracking-wider">
+                            {nav.title}
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              'w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0',
+                              isOpen && 'rotate-180 text-primary',
+                            )}
+                          />
+                        </button>
 
-                      <div className="space-y-6">
-                        {nav.categories.map((cat: typeof businessRegistrationCategories[0]) => (
-                          <div key={cat.id} className="space-y-2">
-                            <div className="flex items-center gap-3">
-                              <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 shrink-0">
-                                <cat.icon className="w-3.5 h-3.5" />
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25, ease: 'easeOut' }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-4 py-4 space-y-5 bg-white">
+                                {nav.categories.map((cat: typeof businessRegistrationCategories[0]) => (
+                                  <div key={cat.id} className="space-y-2">
+                                    <div className="flex items-center gap-2.5">
+                                      <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 shrink-0">
+                                        <cat.icon className="w-3.5 h-3.5" />
+                                      </div>
+                                      <span className="font-black text-slate-900 text-[12px] sm:text-[13px]">{cat.title}</span>
+                                    </div>
+                                    <div className="pl-9 sm:pl-10 grid grid-cols-1 gap-0.5">
+                                      {cat.subServices.map((sub) => (
+                                        <Link
+                                          key={sub.title}
+                                          href={sub.href}
+                                          className="flex items-center gap-2 text-slate-500 hover:text-primary py-1.5 text-[12px] sm:text-[12.5px] font-medium transition-colors min-h-[36px]"
+                                        >
+                                          <span className="w-1 h-1 rounded-full bg-slate-200 shrink-0" />
+                                          <span className="leading-snug">{sub.title}</span>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                              <span className="font-black text-slate-900 text-[13px]">{cat.title}</span>
-                            </div>
-                            <div className="pl-10 grid grid-cols-1 gap-1">
-                              {cat.subServices.map((sub) => (
-                                <Link
-                                  key={sub.title}
-                                  href={sub.href}
-                                  className="flex items-center gap-2 text-slate-500 hover:text-primary py-1 text-[12.5px] font-medium transition-colors"
-                                >
-                                  <span className="w-1 h-1 rounded-full bg-slate-200 shrink-0" />
-                                  {sub.title}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Sheet footer */}
-              <div className="p-5 border-t border-slate-100 bg-slate-50 shrink-0 space-y-3">
+              <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50 shrink-0 space-y-3">
                 <div className="flex items-center justify-center gap-2">
                   <div className="flex -space-x-1.5">
                     {[0, 1, 2].map(i => (
                       <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200" />
                     ))}
                   </div>
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">
+                  <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-wider">
                     10,000+ clients served
                   </span>
                 </div>
-                <Button className="w-full h-12 rounded-xl font-black text-[12px] uppercase tracking-widest bg-slate-900 hover:bg-primary transition-colors shadow-sm">
+                <Button className="w-full h-11 sm:h-12 rounded-xl font-black text-[11px] sm:text-[12px] uppercase tracking-widest bg-slate-900 hover:bg-primary transition-colors shadow-sm">
                   Book Free Consultation
                 </Button>
               </div>

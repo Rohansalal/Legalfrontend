@@ -6,9 +6,9 @@ import { Star, Award, ShieldCheck } from 'lucide-react';
 
 export function TrustSection() {
   return (
-    <section className="py-16 bg-[#F8F9FB] border-y border-slate-100">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 text-center">
+    <section className="py-10 sm:py-12 md:py-14 lg:py-16 bg-[#F8F9FB] border-y border-slate-100">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-10 md:gap-16 lg:gap-24 text-center">
           
           {/* Block 1: Google Reviews */}
           <motion.div 
@@ -33,7 +33,7 @@ export function TrustSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative flex flex-col items-center py-8 px-12 rounded-full border-2 border-orange-100 bg-white shadow-2xl shadow-orange-500/10"
+            className="relative flex flex-col items-center py-6 sm:py-7 lg:py-8 px-8 sm:px-10 lg:px-12 rounded-full border-2 border-orange-100 bg-white shadow-2xl shadow-orange-500/10"
           >
             <div className="flex gap-1 mb-3">
               {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />)}

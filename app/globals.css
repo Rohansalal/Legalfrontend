@@ -75,6 +75,9 @@
 }
 
 @theme inline {
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
   --font-sans: var(--font-urbanist), 'Urbanist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
@@ -118,6 +121,12 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -125,6 +134,18 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+  img, svg, video { max-width: 100%; height: auto; }
+  /* Honor user motion preference across all framer-motion + CSS animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -134,3 +155,8 @@
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 99px; }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
 .custom-scrollbar { scrollbar-width: thin; scrollbar-color: #e2e8f0 transparent; }
+
+/* Fluid type helper — clamps text smoothly between viewport extremes */
+.text-fluid-hero { font-size: clamp(2rem, 7vw + 0.5rem, 6rem); line-height: 1.05; }
+.text-fluid-h2   { font-size: clamp(1.75rem, 4.5vw + 0.5rem, 4rem);  line-height: 1.1; }
+.text-fluid-h3   { font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem); line-height: 1.15; }
