@@ -26,26 +26,26 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 const categories = [
-  { 
-    id: 'legal-solutions', 
-    label: 'Legal Solutions', 
+  {
+    id: 'legal-solutions',
+    label: 'Legal Solutions',
     icon: Scale,
     description: 'Foundational legal structures for your venture.',
     subServices: [
       { title: 'Private Limited Registration', href: '/services/business-registration/company-registration/private-limited-company', icon: ShieldCheck },
-      { title: 'Trademark Registration', href: '/services/business-registration/company-name-search/trademark-name-search', icon: ShieldCheck },
-      { title: 'Founders Agreement', href: '/services/documentation/business-documents/founder-agreement', icon: FileCheck }
+      { title: 'Trademark Registration', href: '/services/lawyer-services/ipr-services/trademark/registration', icon: ShieldCheck },
+      { title: 'Founders Agreement', href: '/services/documentation/business-corporate/joint-venture-agreement', icon: FileCheck }
     ]
   },
-  { 
-    id: 'business-growth', 
-    label: 'Business Growth', 
+  {
+    id: 'business-growth',
+    label: 'Business Growth',
     icon: TrendingUp,
     description: 'Scale your operations globally and securely.',
     subServices: [
-      { title: 'Startup India Registration', href: '/services/business-registration/company-registration/startup-india-registration', icon: Zap },
-      { title: 'Import Export Code (IEC)', href: '/services/business-registration/licenses-and-registrations/import-export-code', icon: Globe },
-      { title: 'ISO Certification', href: '/services/business-registration/licenses-and-registrations/iso-certification', icon: Award }
+      { title: 'Startup India Registration', href: '/services/business-registration/other-registration/startup-india-registration', icon: Zap },
+      { title: 'Import Export Code (IEC)', href: '/services/business-registration/other-registration/import-export-code', icon: Globe },
+      { title: 'ISO Certification', href: '/services/compliances/certification/iso-certification', icon: Award }
     ]
   },
   { 
@@ -79,20 +79,20 @@ const categories = [
         href: '/services/global-business/company-registration/offshore', 
         icon: Building2 
       },
-      { 
-        title: 'Global Compliance & FEMA', 
-        href: '/services/global-business/global-compliance', 
-        icon: ShieldCheck 
+      {
+        title: 'Global Compliance & FEMA',
+        href: '/services/global-business',
+        icon: ShieldCheck
       },
-      { 
-        title: 'Global Banking & Treasury', 
-        href: '/services/global-business/global-banking', 
-        icon: Calculator 
+      {
+        title: 'Global Banking & Treasury',
+        href: '/services/global-business',
+        icon: Calculator
       },
-      { 
-        title: 'Cross-Border Expansion Strategy', 
-        href: '/services/global-business/global-expansion', 
-        icon: TrendingUp 
+      {
+        title: 'Cross-Border Expansion Strategy',
+        href: '/services/global-business',
+        icon: TrendingUp
       },
       { 
         title: 'Educational Institution Setup', 
@@ -111,26 +111,26 @@ const categories = [
       }
     ]
   },
-  { 
-    id: 'compliance', 
-    label: 'Compliance', 
+  {
+    id: 'compliance',
+    label: 'Compliance',
     icon: FileCheck,
     description: 'Stay regulated with zero administrative friction.',
     subServices: [
-      { title: 'GST Registration', href: '/services/business-registration/licenses-and-registrations/gst-registration', icon: Calculator },
-      { title: 'Professional Tax', href: '/services/business-registration/licenses-and-registrations/professional-tax', icon: Landmark },
-      { title: 'Annual ROC Filing', href: '#', icon: Building2 }
+      { title: 'GST Registration', href: '/services/business-registration/company-registration/gst-registration', icon: Calculator },
+      { title: 'Professional Tax', href: '/services/business-registration/taxation', icon: Landmark },
+      { title: 'Annual ROC Filing', href: '/services/compliances/company-compliances/annual-pvt-ltd', icon: Building2 }
     ]
   },
-  { 
-    id: 'dispute-resolution', 
-    label: 'Dispute Resolution', 
+  {
+    id: 'dispute-resolution',
+    label: 'Dispute Resolution',
     icon: Gavel,
     description: 'Expert legal defense and conflict management.',
     subServices: [
-      { title: 'Legal Notice Response', href: '/services/lawyer-services/legal-notices', icon: MessageSquare },
-      { title: 'Civil Litigation Support', href: '/services/lawyer-services/court-support', icon: Gavel },
-      { title: 'Consumer Court Case', href: '#', icon: Gavel }
+      { title: 'Legal Notice Response', href: '/services/lawyer-services/legal-notice', icon: MessageSquare },
+      { title: 'Civil Litigation Support', href: '/services/lawyer-services/litigation', icon: Gavel },
+      { title: 'Consumer Court Case', href: '/services/lawyer-services/consumer-complaint', icon: Gavel }
     ]
   },
 ];
