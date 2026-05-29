@@ -184,10 +184,14 @@ export function Footer() {
             © {year} Legal Door. All Rights Reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-7">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((text) => (
-              <a key={text} href="#" className="text-slate-500 hover:text-white transition-colors text-[10px] sm:text-[11px] font-black uppercase tracking-widest">
-                {text}
-              </a>
+            {[
+              { text: 'Privacy Policy', href: '/privacy-policy' },
+              { text: 'Terms of Service', href: '/terms-of-service' },
+              { text: 'Cookie Policy', href: '/cookie-policy' },
+            ].map((link) => (
+              <Link key={link.text} href={link.href} className="text-slate-500 hover:text-white transition-colors text-[10px] sm:text-[11px] font-black uppercase tracking-widest">
+                {link.text}
+              </Link>
             ))}
           </div>
         </div>

@@ -768,13 +768,17 @@ export function Navbar() {
                 align="end"
                 className="w-64 xl:w-72 p-1.5 rounded-2xl bg-white/98 backdrop-blur-xl border-slate-100 shadow-[0_16px_48px_rgba(0,0,0,0.12)] mt-2"
               >
-                <DropdownMenuItem className="flex items-center justify-between py-3.5 px-4 rounded-xl font-semibold text-[13px] text-slate-700 hover:text-primary hover:bg-slate-50 cursor-pointer group transition-colors">
-                  Talk to a Lawyer
-                  <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <DropdownMenuItem asChild className="flex items-center justify-between py-3.5 px-4 rounded-xl font-semibold text-[13px] text-slate-700 hover:text-primary hover:bg-slate-50 cursor-pointer group transition-colors">
+                  <Link href="/contact">
+                    Talk to a Lawyer
+                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="flex items-center justify-between py-3.5 px-4 rounded-xl font-semibold text-[13px] text-slate-700 hover:text-primary hover:bg-slate-50 cursor-pointer group transition-colors mt-0.5">
-                  Talk to a CA
-                  <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <DropdownMenuItem asChild className="flex items-center justify-between py-3.5 px-4 rounded-xl font-semibold text-[13px] text-slate-700 hover:text-primary hover:bg-slate-50 cursor-pointer group transition-colors mt-0.5">
+                  <Link href="/contact">
+                    Talk to a CA
+                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -899,8 +903,8 @@ export function Navbar() {
                     10,000+ clients served
                   </span>
                 </div>
-                <Button className="w-full h-11 sm:h-12 rounded-xl font-black text-[11px] sm:text-[12px] uppercase tracking-widest bg-slate-900 hover:bg-primary transition-colors shadow-sm">
-                  Book Free Consultation
+                <Button asChild className="w-full h-11 sm:h-12 rounded-xl font-black text-[11px] sm:text-[12px] uppercase tracking-widest bg-slate-900 hover:bg-primary transition-colors shadow-sm">
+                  <Link href="/contact">Book Free Consultation</Link>
                 </Button>
               </div>
             </SheetContent>

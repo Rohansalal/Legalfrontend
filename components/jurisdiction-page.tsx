@@ -76,12 +76,12 @@ export function JurisdictionPage({
             </h1>
             <p className="text-lg text-white/70 leading-relaxed font-medium mb-8">{j.tagline}</p>
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-primary text-white font-black text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
               >
                 Start Registration <ArrowRight className="w-4 h-4" />
-              </button>
+              </Link>
               <span className="inline-flex items-center gap-2 px-5 py-4 rounded-2xl bg-white/10 text-white font-bold text-sm">
                 <Clock className="w-4 h-4 text-primary" /> {j.timeline}
               </span>
