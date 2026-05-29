@@ -47,15 +47,22 @@ import {
   regionHref,
 } from '@/lib/global-jurisdictions';
 
-/* IPR sub-category grouping for the mega-menu (Trademark / Copyright / Patent). */
-const IPR_GROUP_LABELS: Record<string, string> = {
-  trademark: 'Trademark',
-  copyright: 'Copyright',
-  patent: 'Patent',
+/* Sub-category grouping for mega-menu sections that have a 3-level structure. */
+const MENU_GROUPS: Record<string, { base: string; labels: Record<string, string> }> = {
+  'lawyer-ipr': {
+    base: '/ipr-services/',
+    labels: { trademark: 'Trademark', copyright: 'Copyright', patent: 'Patent' },
+  },
+  'lawyer-aviation': {
+    base: '/aviation-maritime/',
+    labels: { aviation: 'Aviation', maritime: 'Maritime', international: 'International Law' },
+  },
 };
-function iprGroup(href: string): string | null {
-  const seg = href.split('/ipr-services/')[1]?.split('/')[0];
-  return seg ? IPR_GROUP_LABELS[seg] ?? null : null;
+function menuGroup(catId: string, href: string): string | null {
+  const cfg = MENU_GROUPS[catId];
+  if (!cfg) return null;
+  const seg = href.split(cfg.base)[1]?.split('/')[0];
+  return seg ? cfg.labels[seg] ?? null : null;
 }
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
@@ -594,11 +601,8 @@ export function Navbar() {
               {/* Service grid — 1 col on lg, 2 cols on xl+ */}
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 2xl:gap-x-10 gap-y-0.5">
                 {active.subServices.map((sub, idx) => {
-                  const grp = active.id === 'lawyer-ipr' ? iprGroup(sub.href) : null;
-                  const prevGrp =
-                    active.id === 'lawyer-ipr' && idx > 0
-                      ? iprGroup(active.subServices[idx - 1].href)
-                      : null;
+                  const grp = menuGroup(active.id, sub.href);
+                  const prevGrp = idx > 0 ? menuGroup(active.id, active.subServices[idx - 1].href) : null;
                   const showHeader = grp && grp !== prevGrp;
                   return (
                     <Fragment key={sub.href}>
@@ -819,11 +823,9 @@ export function Navbar() {
                                     </div>
                                     <div className="pl-9 sm:pl-10 grid grid-cols-1 gap-0.5">
                                       {cat.subServices.map((sub, idx) => {
-                                        const grp = cat.id === 'lawyer-ipr' ? iprGroup(sub.href) : null;
+                                        const grp = menuGroup(cat.id, sub.href);
                                         const prevGrp =
-                                          cat.id === 'lawyer-ipr' && idx > 0
-                                            ? iprGroup(cat.subServices[idx - 1].href)
-                                            : null;
+                                          idx > 0 ? menuGroup(cat.id, cat.subServices[idx - 1].href) : null;
                                         const showHeader = grp && grp !== prevGrp;
                                         return (
                                           <Fragment key={sub.href}>
