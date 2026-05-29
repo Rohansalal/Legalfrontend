@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -46,6 +46,17 @@ import {
   jurisdictionHref,
   regionHref,
 } from '@/lib/global-jurisdictions';
+
+/* IPR sub-category grouping for the mega-menu (Trademark / Copyright / Patent). */
+const IPR_GROUP_LABELS: Record<string, string> = {
+  trademark: 'Trademark',
+  copyright: 'Copyright',
+  patent: 'Patent',
+};
+function iprGroup(href: string): string | null {
+  const seg = href.split('/ipr-services/')[1]?.split('/')[0];
+  return seg ? IPR_GROUP_LABELS[seg] ?? null : null;
+}
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
 
@@ -284,15 +295,31 @@ const lawyerCategories = [
     description: 'Trademark, Copyright and Patent registration, opposition & litigation.',
     href: '/services/lawyer-services/ipr-services',
     subServices: [
+      // Trademark
       { title: 'Trademark Registration', href: '/services/lawyer-services/ipr-services/trademark/registration' },
+      { title: 'Trademark Objection', href: '/services/lawyer-services/ipr-services/trademark/objection' },
+      { title: 'Trademark Hearing', href: '/services/lawyer-services/ipr-services/trademark/hearing' },
       { title: 'Trademark Opposition', href: '/services/lawyer-services/ipr-services/trademark/opposition' },
+      { title: 'Trademark Renewal', href: '/services/lawyer-services/ipr-services/trademark/renewal' },
+      { title: 'Trademark Restoration', href: '/services/lawyer-services/ipr-services/trademark/restoration' },
+      { title: 'Trademark Assignment', href: '/services/lawyer-services/ipr-services/trademark/assignment' },
       { title: 'Trademark Infringement', href: '/services/lawyer-services/ipr-services/trademark/infringement' },
+      { title: 'Trademark Investigation', href: '/services/lawyer-services/ipr-services/trademark/investigation' },
+      { title: 'Trademark Logo', href: '/services/lawyer-services/ipr-services/trademark/logo' },
+      // Copyright
       { title: 'Copyright Registration', href: '/services/lawyer-services/ipr-services/copyright/registration' },
-      { title: 'Songs / Music Copyright', href: '/services/lawyer-services/ipr-services/copyright/songs' },
+      { title: 'Copyright Objection', href: '/services/lawyer-services/ipr-services/copyright/objection' },
+      { title: 'Songs Copyright', href: '/services/lawyer-services/ipr-services/copyright/songs' },
+      { title: 'Songs Recording Copyright', href: '/services/lawyer-services/ipr-services/copyright/songs-recording' },
+      { title: 'Artistic Work / Painting Copyright', href: '/services/lawyer-services/ipr-services/copyright/artistic-work' },
       { title: 'Logo Copyright', href: '/services/lawyer-services/ipr-services/copyright/logo' },
       { title: 'Cinematography Copyright', href: '/services/lawyer-services/ipr-services/copyright/cinematography' },
-      { title: 'Patent — Provisional Registration', href: '/services/lawyer-services/ipr-services/patent/provisional-registration' },
-      { title: 'Patent — Complete Registration', href: '/services/lawyer-services/ipr-services/patent/complete-registration' },
+      { title: 'Copyright a Book', href: '/services/lawyer-services/ipr-services/copyright/book' },
+      { title: 'Literature / Dramatic Copyright', href: '/services/lawyer-services/ipr-services/copyright/literature-dramatic' },
+      { title: 'E-Symbol Copyright', href: '/services/lawyer-services/ipr-services/copyright/e-symbol' },
+      // Patent
+      { title: 'Patent Complete Registration', href: '/services/lawyer-services/ipr-services/patent/complete-registration' },
+      { title: 'Patent Provisional Registration', href: '/services/lawyer-services/ipr-services/patent/provisional-registration' },
     ],
   },
   {
@@ -566,18 +593,35 @@ export function Navbar() {
 
               {/* Service grid — 1 col on lg, 2 cols on xl+ */}
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 2xl:gap-x-10 gap-y-0.5">
-                {active.subServices.map((sub) => (
-                  <Link
-                    key={sub.title}
-                    href={sub.href}
-                    className="group flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-150"
-                  >
-                    <span className="text-[11.5px] xl:text-[12.5px] font-semibold text-slate-600 group-hover:text-slate-900 transition-colors leading-snug">
-                      {sub.title}
-                    </span>
-                    <ArrowRight className="w-3 h-3 text-primary shrink-0 ml-2 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150" />
-                  </Link>
-                ))}
+                {active.subServices.map((sub, idx) => {
+                  const grp = active.id === 'lawyer-ipr' ? iprGroup(sub.href) : null;
+                  const prevGrp =
+                    active.id === 'lawyer-ipr' && idx > 0
+                      ? iprGroup(active.subServices[idx - 1].href)
+                      : null;
+                  const showHeader = grp && grp !== prevGrp;
+                  return (
+                    <Fragment key={sub.href}>
+                      {showHeader && (
+                        <div className="xl:col-span-2 flex items-center gap-2 pt-3 first:pt-0 mb-0.5">
+                          <span className="text-[10px] font-black uppercase tracking-[0.18em] text-primary">
+                            {grp}
+                          </span>
+                          <span className="h-px flex-1 bg-slate-100" />
+                        </div>
+                      )}
+                      <Link
+                        href={sub.href}
+                        className="group flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-150"
+                      >
+                        <span className="text-[11.5px] xl:text-[12.5px] font-semibold text-slate-600 group-hover:text-slate-900 transition-colors leading-snug">
+                          {sub.title}
+                        </span>
+                        <ArrowRight className="w-3 h-3 text-primary shrink-0 ml-2 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150" />
+                      </Link>
+                    </Fragment>
+                  );
+                })}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -774,16 +818,30 @@ export function Navbar() {
                                       <span className="font-black text-slate-900 text-[12px] sm:text-[13px]">{cat.title}</span>
                                     </div>
                                     <div className="pl-9 sm:pl-10 grid grid-cols-1 gap-0.5">
-                                      {cat.subServices.map((sub) => (
-                                        <Link
-                                          key={sub.title}
-                                          href={sub.href}
-                                          className="flex items-center gap-2 text-slate-500 hover:text-primary py-1.5 text-[12px] sm:text-[12.5px] font-medium transition-colors min-h-[36px]"
-                                        >
-                                          <span className="w-1 h-1 rounded-full bg-slate-200 shrink-0" />
-                                          <span className="leading-snug">{sub.title}</span>
-                                        </Link>
-                                      ))}
+                                      {cat.subServices.map((sub, idx) => {
+                                        const grp = cat.id === 'lawyer-ipr' ? iprGroup(sub.href) : null;
+                                        const prevGrp =
+                                          cat.id === 'lawyer-ipr' && idx > 0
+                                            ? iprGroup(cat.subServices[idx - 1].href)
+                                            : null;
+                                        const showHeader = grp && grp !== prevGrp;
+                                        return (
+                                          <Fragment key={sub.href}>
+                                            {showHeader && (
+                                              <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-primary pt-2.5 pb-0.5 first:pt-0">
+                                                {grp}
+                                              </span>
+                                            )}
+                                            <Link
+                                              href={sub.href}
+                                              className="flex items-center gap-2 text-slate-500 hover:text-primary py-1.5 text-[12px] sm:text-[12.5px] font-medium transition-colors min-h-[36px]"
+                                            >
+                                              <span className="w-1 h-1 rounded-full bg-slate-200 shrink-0" />
+                                              <span className="leading-snug">{sub.title}</span>
+                                            </Link>
+                                          </Fragment>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 ))}
