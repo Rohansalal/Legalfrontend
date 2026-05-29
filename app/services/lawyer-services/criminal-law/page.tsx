@@ -26,7 +26,7 @@ const sections = [
       'Police complaint assistance, FIR registration and complaint drafting before police stations, magistrates and competent authorities.',
     services: [
       { name: 'FIR Registration & Police Complaint Assistance', href: '/services/lawyer-services/criminal-law/fir-registration' },
-      { name: 'Filing Criminal Complaints (Cr.P.C.)', href: '/services/lawyer-services/criminal-law/criminal-complaint-filing' },
+      { name: 'Filing Criminal Complaints (BNSS)', href: '/services/lawyer-services/criminal-law/criminal-complaint-filing' },
       { name: 'Drafting Complaints — Police, Magistrate & Authorities', href: '/services/lawyer-services/criminal-law/complaint-drafting' },
     ],
   },
