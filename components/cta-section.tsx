@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
@@ -44,19 +45,23 @@ export function CTASection() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="lg"
+              asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground flex items-center gap-2 w-full sm:w-auto"
             >
-              Start Your Consultation
-              <ArrowRight className="h-5 w-5" />
+              <Link href="/contact">
+                Start Your Consultation
+                <ArrowRight className="h-5 w-5" />
+              </Link>
             </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="lg"
               variant="outline"
+              asChild
               className="border-primary text-primary hover:bg-primary/10 w-full sm:w-auto"
             >
-              Contact Us
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </motion.div>
         </motion.div>

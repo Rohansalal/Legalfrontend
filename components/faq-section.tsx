@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, FileCheck, FileText, Landmark, Scale, Globe, HelpCircle, Headphones, ArrowRight } from 'lucide-react';
 import {
@@ -277,13 +278,13 @@ export function FAQSection() {
                 <p className="text-sm text-slate-500 leading-relaxed mb-6">
                   Can’t find what you’re looking for? Our legal experts are happy to help.
                 </p>
-                <button
-                  type="button"
+                <Link
+                  href="/contact"
                   className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-black text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors"
                 >
                   Talk to an Expert
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>
