@@ -40,6 +40,12 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
+import {
+  REGIONS as GLOBAL_REGIONS,
+  jurisdictionsByRegion,
+  jurisdictionHref,
+  regionHref,
+} from '@/lib/global-jurisdictions';
 
 /* ─── Data ─────────────────────────────────────────────────────────────── */
 
@@ -122,15 +128,19 @@ const businessRegistrationCategories = [
     id: 'institutional-setup',
     title: 'Institutional Setup',
     icon: Landmark,
-    description: 'Political party, university, school, hospital, petrol pump and CSR setup.',
+    description: 'Political party, university, school, hospital, hotel, petrol pump, NGO, industries & factory setup.',
     href: '/services/business-registration/institutional-setup',
     subServices: [
       { title: 'Political Party Formation', href: '/services/business-registration/institutional-setup/political-party' },
       { title: 'University Setup & License', href: '/services/business-registration/institutional-setup/university-setup' },
       { title: 'School Setup & License', href: '/services/business-registration/institutional-setup/school-setup' },
       { title: 'Hospital Setup & License', href: '/services/business-registration/institutional-setup/hospital-setup' },
+      { title: 'Hotel & Resort Setup & License', href: '/services/business-registration/institutional-setup/hotel-resort' },
       { title: 'Petrol Pump License', href: '/services/business-registration/institutional-setup/petrol-pump' },
       { title: 'CSR Advisory', href: '/services/business-registration/institutional-setup/csr-advisory' },
+      { title: 'NGO Compliances & Advisory', href: '/services/business-registration/institutional-setup/ngo-advisory' },
+      { title: 'Industries Setup & License', href: '/services/business-registration/institutional-setup/industries-setup' },
+      { title: 'Factory Setup & License', href: '/services/business-registration/institutional-setup/factory-setup' },
     ],
   },
 ];
@@ -403,74 +413,30 @@ const documentationCategories = [
   },
 ];
 
-const globalBusinessCategories = [
-  {
-    id: 'global-main',
-    title: 'Global Expansion',
-    icon: Globe,
-    description: 'International setup, compliance and banking.',
-    href: '/services/global-business',
-    subServices: [
-      { title: 'International Formation', href: '/services/global-business' },
-      { title: 'Global Compliance', href: '/services/global-business' },
-      { title: 'Global Banking', href: '/services/global-business' },
-      { title: 'Global Expansion', href: '/services/global-business' },
-    ],
-  },
-  {
-    id: 'edu-institutional',
-    title: 'Education — Institutional',
-    icon: Award,
-    description: 'University / college / school setup, licensing, compliance & governance.',
-    href: '/services/global-business/educational-law/institutional',
-    subServices: [
-      { title: 'Setup Strategy & Implementation', href: '/services/global-business/educational-law/institutional/setup-strategy' },
-      { title: 'Licenses & Regulatory Approvals', href: '/services/global-business/educational-law/institutional/licenses-approvals' },
-      { title: 'Regulatory Compliance', href: '/services/global-business/educational-law/institutional/regulatory-compliance' },
-      { title: 'Student Rights Protection', href: '/services/global-business/educational-law/institutional/student-rights-protection' },
-      { title: 'Policy Drafting & Review', href: '/services/global-business/educational-law/institutional/policy-drafting-review' },
-      { title: 'Institutional Governance', href: '/services/global-business/educational-law/institutional/institutional-governance' },
-      { title: 'Accreditation & Licensing', href: '/services/global-business/educational-law/institutional/accreditation-licensing' },
-      { title: 'Intellectual Property', href: '/services/global-business/educational-law/institutional/intellectual-property' },
-      { title: 'Government Grant Compliance', href: '/services/global-business/educational-law/institutional/government-grant-compliance' },
-      { title: 'Handling Harassment Cases', href: '/services/global-business/educational-law/institutional/harassment-cases' },
-    ],
-  },
-  {
-    id: 'edu-courses',
-    title: 'Education — Legal Exam Coaching',
-    icon: FileCheck,
-    description: 'CLAT, Judicial Services, Civil Services, CS, Patent / Trademark Agent exams.',
-    href: '/services/global-business/educational-law/courses',
-    subServices: [
-      { title: 'CLAT / AILET', href: '/services/global-business/educational-law/courses/clat-ailet' },
-      { title: 'Judicial Services', href: '/services/global-business/educational-law/courses/judicial-services' },
-      { title: 'Civil Services', href: '/services/global-business/educational-law/courses/civil-services' },
-      { title: 'Law for IAS', href: '/services/global-business/educational-law/courses/law-for-ias' },
-      { title: 'Law for UGC-NET', href: '/services/global-business/educational-law/courses/law-for-ugc-net' },
-      { title: 'Company Secretary', href: '/services/global-business/educational-law/courses/company-secretary' },
-      { title: 'Patent Agent Examination', href: '/services/global-business/educational-law/courses/patent-agent-exam' },
-      { title: 'Trademark Agent Exam', href: '/services/global-business/educational-law/courses/trademark-agent-exam' },
-    ],
-  },
-  {
-    id: 'edu-counseling',
-    title: 'Education — Counseling, Admission & Training',
-    icon: Sparkles,
-    description: 'Career counseling, LLB / LLM / PhD admission, drafting training & study abroad.',
-    href: '/services/global-business/educational-law/counseling-admission',
-    subServices: [
-      { title: 'Career Counseling', href: '/services/global-business/educational-law/counseling-admission/career-counseling' },
-      { title: 'LLB Admission', href: '/services/global-business/educational-law/counseling-admission/llb-admission' },
-      { title: 'LLM Admission', href: '/services/global-business/educational-law/counseling-admission/llm-admission' },
-      { title: 'PhD Admission', href: '/services/global-business/educational-law/counseling-admission/phd-admission' },
-      { title: 'Legal Drafting & Pleading Training', href: '/services/global-business/educational-law/counseling-admission/legal-drafting-pleading-training' },
-      { title: 'Moot Court Competition', href: '/services/global-business/educational-law/counseling-admission/moot-court-competition' },
-      { title: 'Study Abroad', href: '/services/global-business/educational-law/counseling-admission/study-abroad' },
-      { title: 'Foreign Immigration & Visa', href: '/services/global-business/educational-law/counseling-admission/foreign-immigration-visa' },
-    ],
-  },
-];
+/*
+ * Global Business mega-menu — generated from the jurisdiction data so the
+ * navbar, region landing pages and per-country pages never drift apart.
+ * Categories: Americas · Europe · Asia-Pacific · Middle East · Offshore.
+ */
+const regionIconMap: Record<string, typeof Globe> = {
+  Globe,
+  Landmark,
+  Building2,
+  Briefcase,
+  ShieldCheck,
+};
+
+const globalBusinessCategories = GLOBAL_REGIONS.map((r) => ({
+  id: r.key,
+  title: r.name,
+  icon: regionIconMap[r.icon] ?? Globe,
+  description: r.blurb,
+  href: regionHref(r.key),
+  subServices: jurisdictionsByRegion(r.key).map((j) => ({
+    title: j.name,
+    href: jurisdictionHref(j),
+  })),
+}));
 
 const mainNavLinks = [
   { title: 'Business Registration', categories: businessRegistrationCategories },
@@ -494,8 +460,8 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Mega-menu top offset follows the navbar height transition */
-  const menuTop = isScrolled ? 58 : 80;
+  /* Mega-menu top offset follows the navbar height transition (taller logo) */
+  const menuTop = isScrolled ? 72 : 96;
 
   const renderMegaMenu = (categories: typeof businessRegistrationCategories) => {
     const active = categories.find(c => c.id === activeCategory) ?? categories[0];
@@ -639,9 +605,9 @@ export function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Legal Door"
-            width={50}
-            height={50}
-            className="h-8 xs:h-9 sm:h-11 3xl:h-12 w-auto"
+            width={64}
+            height={64}
+            className="h-11 xs:h-12 sm:h-14 3xl:h-16 w-auto"
             style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
             priority
           />
@@ -660,8 +626,8 @@ export function Navbar() {
                       'bg-transparent hover:bg-transparent focus:bg-transparent',
                       'data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent',
                       // typography
-                      'font-bold tracking-tight uppercase',
-                      'text-[10px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[14px]',
+                      'font-black tracking-tight uppercase',
+                      'text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[15px]',
                       // spacing — very tight on lg (1024-1280), normal on xl+
                       'h-auto py-2 px-1.5 xl:px-3 2xl:px-3.5',
                       // colour states
