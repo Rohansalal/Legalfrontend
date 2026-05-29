@@ -461,7 +461,7 @@ export function Navbar() {
   }, []);
 
   /* Mega-menu top offset follows the navbar height transition (taller logo) */
-  const menuTop = isScrolled ? 72 : 96;
+  const menuTop = isScrolled ? 86 : 106;
 
   const renderMegaMenu = (categories: typeof businessRegistrationCategories) => {
     const active = categories.find(c => c.id === activeCategory) ?? categories[0];
@@ -605,9 +605,9 @@ export function Navbar() {
           <Image
             src="/images/logo.png"
             alt="Legal Door"
-            width={64}
-            height={64}
-            className="h-11 xs:h-12 sm:h-14 3xl:h-16 w-auto"
+            width={80}
+            height={80}
+            className="h-12 xs:h-14 sm:h-16 3xl:h-20 w-auto"
             style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
             priority
           />
