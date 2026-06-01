@@ -297,7 +297,7 @@ const complianceCategories = [
 const lawyerCategories = [
   {
     id: 'lawyer-ipr',
-    title: 'IPR Services',
+    title: 'IPR Law',
     icon: Sparkles,
     description: 'Trademark, Copyright and Patent registration, opposition & litigation.',
     href: '/services/lawyer-services/ipr-services',
@@ -331,7 +331,7 @@ const lawyerCategories = [
   },
   {
     id: 'lawyer-corporate',
-    title: 'Corporate Services',
+    title: 'Corporate Law',
     icon: Building2,
     description: 'Insolvency, M&A, IPO, banking, insurance, securities & trade law.',
     href: '/services/lawyer-services/corporate-services',
@@ -502,7 +502,7 @@ const globalBusinessCategories = GLOBAL_REGIONS.map((r) => ({
   })),
 }));
 
-const mainNavLinks = [
+export const mainNavLinks = [
   { title: 'Business Registration', categories: businessRegistrationCategories },
   { title: 'Compliances', categories: complianceCategories },
   { title: 'Documentation', categories: documentationCategories },
@@ -517,8 +517,14 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('');
   const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
+  // Radix NavigationMenu (with viewport={false}) mounts its closed mega-menu
+  // content on the client but skips it during SSR; the framer-motion bits inside
+  // consume useId's, shifting every Radix id and triggering a hydration mismatch.
+  // Rendering the interactive menu only after mount keeps SSR === first client render.
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -693,6 +699,7 @@ export function Navbar() {
 
         {/* ── Desktop nav ── */}
         <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 mx-auto">
+          {mounted && (
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-0">
               {mainNavLinks.map((nav) => (
@@ -742,12 +749,14 @@ export function Navbar() {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
+          )}
         </div>
 
         {/* ── Right actions ── */}
         <div className="flex items-center gap-2 xl:gap-3 2xl:gap-4 shrink-0">
           {/* Consult button — hidden on mobile, compact on lg, full on xl+ */}
           <div className="hidden md:block">
+            {mounted && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className={cn(
@@ -782,9 +791,11 @@ export function Navbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            )}
           </div>
 
           {/* ── Mobile hamburger ── */}
+          {mounted && (
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
               <Button
@@ -909,6 +920,7 @@ export function Navbar() {
               </div>
             </SheetContent>
           </Sheet>
+          )}
         </div>
       </div>
     </motion.nav>

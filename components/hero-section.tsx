@@ -1,11 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Play, Star, ShieldCheck, Zap, Headphones, CheckCircle2, Landmark, FileCheck, Scale, Gavel } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlobalSearchBar } from '@/components/search-bar';
+
+const quickServices = [
+  { label: 'Private Limited', href: '/services/business-registration/company-registration/private-limited-company' },
+  { label: 'GST Filing', href: '/services/compliances/company-compliances/gst-filing' },
+  { label: 'Trademark', href: '/services/lawyer-services/ipr-services/trademark/registration' },
+  { label: 'Startup India', href: '/services/business-registration/other-registration/startup-india-registration' },
+  { label: 'LLP', href: '/services/business-registration/company-registration/llp-registration' },
+  { label: 'ISO Certification', href: '/services/compliances/certification/iso-certification' },
+];
 
 export function HeroSection() {
   const floatingIcons = [
@@ -118,21 +128,15 @@ export function HeroSection() {
 
           {/* Quick Service Badges */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 text-slate-400 text-xs sm:text-sm font-semibold">
-            <span className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> Private Limited
-            </span>
-            <span className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> GST Filing
-            </span>
-            <span className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> Trademark
-            </span>
-            <span className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> MSME
-            </span>
-            <span className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white transition-colors cursor-pointer">
-              <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> LLP
-            </span>
+            {quickServices.map((s) => (
+              <Link
+                key={s.label}
+                href={s.href}
+                className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/5 bg-white/5 hover:text-white hover:border-white/20 hover:bg-white/10 transition-colors"
+              >
+                <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" /> {s.label}
+              </Link>
+            ))}
           </div>
 
           {/* Premium Professional Trust Bar */}

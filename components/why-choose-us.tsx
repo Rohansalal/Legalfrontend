@@ -44,11 +44,11 @@ const features = [
 ];
 
 const authorities = [
-  { id: 'iso', caption: 'ISO Certified' },
+  { id: 'mca', caption: 'MCA Registered' },
   { id: 'fssai', caption: 'FSSAI Licensed' },
   { id: 'msme', caption: 'MSME / Udyam' },
   { id: 'ip', caption: 'IP India Registered' },
-  { id: 'mca', caption: 'MCA Registered' },
+  { id: 'iso', caption: 'ISO Certified' },
   { id: 'gst', caption: 'GST Compliant' },
   { id: 'incometax', caption: 'Income Tax Dept.' },
   { id: 'ugc', caption: 'UGC Recognised' },
@@ -184,8 +184,8 @@ export function WhyChooseUs() {
           </p>
         </motion.div>
 
-        {/* Feature cards — services-style grid, left-aligned content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mt-12 sm:mt-16 lg:mt-20">
+        {/* Feature cards — round icon badges with extra breathing room */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mt-12 sm:mt-16 lg:mt-20">
           {features.map((feature, i) => (
             <motion.div
               key={i}
@@ -194,10 +194,10 @@ export function WhyChooseUs() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="text-left p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300"
+              className="text-left p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300"
             >
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl ${feature.color} flex items-center justify-center mb-4 sm:mb-5`}>
-                <feature.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+              <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full ${feature.color} flex items-center justify-center mb-4 sm:mb-5`}>
+                <feature.icon className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
               <h4 className="font-black text-slate-900 mb-1.5 sm:mb-2 text-sm sm:text-base">{feature.title}</h4>
               <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{feature.description}</p>

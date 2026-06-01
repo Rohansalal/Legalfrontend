@@ -12,7 +12,7 @@ export const metadata = {
 
 const lawyerCategories = [
   {
-    title: 'IPR Services',
+    title: 'IPR Law',
     icon: Lightbulb,
     description:
       'Trademark, Copyright and Patent registration, prosecution, opposition and litigation.',
@@ -26,7 +26,7 @@ const lawyerCategories = [
     ],
   },
   {
-    title: 'Corporate Services',
+    title: 'Corporate Law',
     icon: Building,
     description:
       'Insolvency, M&A, IPO, banking, insurance, securities and industrial-dispute advisory & litigation.',

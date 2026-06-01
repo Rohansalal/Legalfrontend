@@ -82,6 +82,17 @@ const categories = [
       { title: 'Consumer Court Case', desc: 'Fight unfair practices with strong consumer court support.', href: '/services/lawyer-services/consumer-complaint', icon: Gavel }
     ]
   },
+  {
+    id: 'documentation',
+    label: 'Documentation',
+    icon: FileText,
+    description: 'Professionally drafted legal documents and agreements.',
+    subServices: [
+      { title: 'Legal Contract Drafting', desc: 'Watertight contracts drafted and vetted by legal experts.', href: '/services/documentation/legal/legal-contract', icon: FileText },
+      { title: 'Rent / Lease Agreement', desc: 'Stamp-ready rent and lease agreements with registration support.', href: '/services/documentation/legal/rent-lease-agreement', icon: Home },
+      { title: 'Affidavit Drafting', desc: 'Sworn affidavits prepared accurately for any legal purpose.', href: '/services/documentation/legal/affidavit', icon: FileCheck }
+    ]
+  },
 ];
 
 /* Soft pastel icon palette rotated across cards (reference design). */
@@ -180,7 +191,7 @@ export function ServicesSection() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
             >
-              {activeData?.subServices.map((service, i) => {
+              {activeData?.subServices.slice(0, 3).map((service, i) => {
                 const style = ICON_STYLES[i % ICON_STYLES.length];
                 return (
                   <motion.div

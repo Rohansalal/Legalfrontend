@@ -1,52 +1,83 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Search, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { mainNavLinks } from '@/components/navbar';
 
-// Comprehensive Services Dataset
-const servicesDataset = [
-  // Business Registration
-  { name: "Private Limited Company Registration", category: "Business Registration", url: "/business-registration/company-registration/private-limited-company", keywords: ["pvt ltd", "incorporation", "company"] },
-  { name: "LLP Registration", category: "Business Registration", url: "/business-registration/company-registration/limited-liability-partnership", keywords: ["partnership", "llp"] },
-  { name: "One Person Company (OPC)", category: "Business Registration", url: "/business-registration/company-registration/one-person-company", keywords: ["opc", "solo"] },
-  { name: "Startup India Registration", category: "Business Registration", url: "/business-registration/company-registration/startup-india-registration", keywords: ["startup", "dpiit"] },
-  { name: "MSME Registration", category: "Business Registration", url: "/business-registration/licenses-and-registrations/msme-registration", keywords: ["udyam", "msme", "small business"] },
-  { name: "GST Registration", category: "Business Registration", url: "/business-registration/licenses-and-registrations/gst-registration", keywords: ["gst", "tax"] },
-  
-  // Property
-  { name: "Property Registration", category: "Property", url: "/property/property-registration/registration", keywords: ["registry", "stamp duty"] },
-  { name: "Sale Deed Drafting", category: "Property", url: "/property/property-documentation/sale-deed-drafting", keywords: ["deed", "sale"] },
-  { name: "Title Verification", category: "Property", url: "/property/property-verification/title-verification", keywords: ["check", "search", "owner"] },
-  
-  // NGO Services
-  { name: "Trust Registration", category: "NGO Services", url: "/ngo-services/ngo-registration/trust", keywords: ["ngo", "trust"] },
-  { name: "Society Registration", category: "NGO Services", url: "/ngo-services/ngo-registration/society", keywords: ["ngo", "society"] },
-  { name: "Section 8 Company", category: "NGO Services", url: "/ngo-services/ngo-registration/section-8", keywords: ["ngo", "section 8"] },
-  { name: "12A & 80G Registration", category: "NGO Services", url: "/ngo-services/ngo-tax-exemption/12a", keywords: ["tax exemption", "ngo"] },
-  
-  // Documentation
-  { name: "NDA Drafting", category: "Documentation", url: "/documentation/business-documents/nda", keywords: ["nda", "non disclosure", "agreement"] },
-  { name: "Rent Agreement", category: "Documentation", url: "/documentation/property-documents/rental-agreement", keywords: ["rent", "lease"] },
-  { name: "Power of Attorney", category: "Documentation", url: "/documentation/personal-legal-documents/power-of-attorney", keywords: ["poa", "personal"] },
-  { name: "Affidavit", category: "Documentation", url: "/documentation/personal-legal-documents/affidavits", keywords: ["legal", "stamp paper"] },
-  
-  // Global Business
-  { name: "USA Company Registration", category: "Global Business", url: "/business-registration/international-business-setup/usa-company", keywords: ["usa", "delaware", "llc"] },
-  { name: "UK Company Formation", category: "Global Business", url: "/business-registration/international-business-setup/uk-company", keywords: ["uk", "london", "ltd"] },
-  { name: "Dubai Company Setup", category: "Global Business", url: "/business-registration/international-business-setup/dubai-company", keywords: ["dubai", "uae", "offshore"] },
+type ServiceItem = { name: string; category: string; url: string; search: string };
+
+/* Common abbreviations / synonyms so short queries match the right service. */
+const KEYWORD_MAP: { test: RegExp; words: string }[] = [
+  { test: /private limited/i, words: 'pvt ltd private limited' },
+  { test: /one person company/i, words: 'opc' },
+  { test: /llp|limited liability partnership/i, words: 'llp partnership' },
+  { test: /non-disclosure/i, words: 'nda' },
+  { test: /power of attorney/i, words: 'poa gpa' },
+  { test: /memorandum of understanding/i, words: 'mou' },
+  { test: /gst/i, words: 'gst tax goods services' },
+  { test: /trademark/i, words: 'tm brand ip ipr' },
+  { test: /import export/i, words: 'iec' },
+  { test: /section 8/i, words: 'ngo non profit' },
+  { test: /itr|income tax/i, words: 'itr income tax return' },
 ];
+
+function extraKeywords(title: string): string {
+  return KEYWORD_MAP.filter((k) => k.test.test(title)).map((k) => k.words).join(' ');
+}
+
+/* Build a flat, de-duplicated search index from the live navbar service tree,
+ * so every service in the menu is searchable and links to its real page. */
+function buildServiceIndex(): ServiceItem[] {
+  const seen = new Set<string>();
+  const items: ServiceItem[] = [];
+
+  const push = (name: string, category: string, url: string, context: string) => {
+    if (!url || url === '#' || seen.has(url)) return;
+    seen.add(url);
+    items.push({
+      name,
+      category,
+      url,
+      search: `${name} ${context} ${category} ${extraKeywords(name)}`.toLowerCase(),
+    });
+  };
+
+  for (const nav of mainNavLinks) {
+    for (const cat of nav.categories) {
+      push(cat.title, nav.title, cat.href, '');
+      for (const sub of cat.subServices) {
+        push(sub.title, nav.title, sub.href, cat.title);
+      }
+    }
+  }
+  return items;
+}
+
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 export function GlobalSearchBar() {
   const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState<typeof servicesDataset>([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const servicesDataset = useMemo(buildServiceIndex, []);
+
+  const suggestions = useMemo(() => {
+    const q = query.toLowerCase().trim();
+    if (q.length < 2) return [];
+    const terms = q.split(/\s+/);
+    return servicesDataset
+      .filter((item) => terms.every((t) => item.search.includes(t)))
+      .slice(0, 8);
+  }, [query, servicesDataset]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -59,19 +90,9 @@ export function GlobalSearchBar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Search Logic
   useEffect(() => {
-    if (query.length > 1) {
-      const filtered = servicesDataset.filter(item => {
-        const searchStr = `${item.name} ${item.category} ${item.keywords.join(' ')}`.toLowerCase();
-        return searchStr.includes(query.toLowerCase());
-      }).slice(0, 6); // Limit to 6 results for UX
-      setSuggestions(filtered);
-      setShowDropdown(true);
-    } else {
-      setSuggestions([]);
-      setShowDropdown(false);
-    }
+    setShowDropdown(query.trim().length >= 2);
+    setActiveIndex(0);
   }, [query]);
 
   const handleSelect = (url: string) => {
@@ -80,14 +101,36 @@ export function GlobalSearchBar() {
     setQuery('');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestions.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIndex((i) => (i + 1) % suggestions.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIndex((i) => (i - 1 + suggestions.length) % suggestions.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSelect(suggestions[activeIndex]?.url ?? suggestions[0].url);
+    } else if (e.key === 'Escape') {
+      setShowDropdown(false);
+    }
+  };
+
+  const runSearch = () => {
+    if (suggestions.length) handleSelect(suggestions[0].url);
+  };
+
   const highlightMatch = (text: string, part: string) => {
-    const parts = text.split(new RegExp(`(${part})`, 'gi'));
+    const safe = escapeRegExp(part.trim());
+    if (!safe) return text;
+    const parts = text.split(new RegExp(`(${safe})`, 'gi'));
     return (
       <span>
-        {parts.map((p, i) => 
-          p.toLowerCase() === part.toLowerCase() 
-            ? <span key={i} className="text-primary font-black">{p}</span> 
-            : p
+        {parts.map((p, i) =>
+          p.toLowerCase() === part.trim().toLowerCase()
+            ? <span key={i} className="text-primary font-black">{p}</span>
+            : p,
         )}
       </span>
     );
@@ -105,12 +148,15 @@ export function GlobalSearchBar() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onFocus={() => query.trim().length >= 2 && setShowDropdown(true)}
           placeholder="Search services…"
           aria-label="Search legal services"
           className="flex-1 min-w-0 bg-transparent border-none text-white placeholder:text-slate-500 focus-visible:ring-0 py-4 sm:py-6 lg:py-8 text-sm sm:text-base lg:text-lg px-2 sm:px-3 lg:px-4 font-medium"
         />
         <div className="pr-1.5 sm:pr-2.5 lg:pr-3 shrink-0">
           <Button
+            onClick={runSearch}
             aria-label="Search"
             className="h-9 px-3 sm:h-11 sm:px-5 lg:h-14 lg:px-10 rounded-lg sm:rounded-xl text-xs sm:text-sm lg:text-lg font-black bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all active:scale-95 flex items-center gap-1 sm:gap-2 group/btn"
           >
@@ -129,20 +175,21 @@ export function GlobalSearchBar() {
             exit={{ opacity: 0, y: 10 }}
             className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 overflow-hidden z-[100]"
           >
-            <div className="p-2">
+            <div className="p-2 max-h-[60vh] overflow-y-auto custom-scrollbar">
               {suggestions.length > 0 ? (
                 suggestions.map((item, index) => (
                   <button
-                    key={index}
+                    key={item.url}
                     onClick={() => handleSelect(item.url)}
-                    className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 transition-all text-left group"
+                    onMouseEnter={() => setActiveIndex(index)}
+                    className={cnRow(index === activeIndex)}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                    <div className="flex items-center gap-4 min-w-0">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                         <CheckCircle2 className="w-5 h-5" />
                       </div>
-                      <div>
-                        <h4 className="text-sm font-black text-slate-900 leading-none mb-1.5">
+                      <div className="min-w-0">
+                        <h4 className="text-sm font-black text-slate-900 leading-none mb-1.5 truncate">
                           {highlightMatch(item.name, query)}
                         </h4>
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">
@@ -150,26 +197,33 @@ export function GlobalSearchBar() {
                         </p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-slate-200 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-slate-200 group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 ml-2" />
                   </button>
                 ))
               ) : (
                 <div className="p-8 text-center">
-                  <p className="text-sm font-bold text-slate-400">No services found for "{query}"</p>
+                  <p className="text-sm font-bold text-slate-400">No services found for &ldquo;{query}&rdquo;</p>
                 </div>
               )}
             </div>
-            
+
             {/* Dropdown Footer */}
             <div className="bg-slate-50 p-3 border-t border-slate-100 flex flex-col xs:flex-row gap-1 xs:gap-2 xs:justify-between xs:items-center px-4 sm:px-6">
               <span className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-tight">
                 <span className="hidden sm:inline">Search powered by </span>Legal Door Intelligence
               </span>
-              <span className="text-[9px] sm:text-[10px] font-bold text-primary">Press Enter to Search</span>
+              <span className="text-[9px] sm:text-[10px] font-bold text-primary">Press Enter to open</span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
+}
+
+function cnRow(active: boolean) {
+  return [
+    'w-full flex items-center justify-between p-4 rounded-xl transition-all text-left group',
+    active ? 'bg-slate-50' : 'hover:bg-slate-50',
+  ].join(' ');
 }
