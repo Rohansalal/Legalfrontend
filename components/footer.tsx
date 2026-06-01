@@ -156,19 +156,24 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm font-bold text-slate-400">
                 <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <span>12th Floor, Legal Tower,<br />Business District, Mumbai 400001</span>
+                <span>Office No. OC-1021, 10th Floor, Gaur City Center,<br />Greater Noida West, G.B. Nagar, UP – 201318</span>
               </li>
               <li>
-                <a href="tel:+912245678900" className="flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-white transition-colors">
+                <a href="tel:+919811765737" className="flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-white transition-colors">
                   <Phone className="w-4 h-4 text-primary shrink-0" />
-                  +91 (22) 4567-8900
+                  +91 98117 65737
                 </a>
               </li>
-              <li>
-                <a href="mailto:contact@legaldoor.in" className="flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-white transition-colors">
-                  <Mail className="w-4 h-4 text-primary shrink-0" />
-                  contact@legaldoor.in
-                </a>
+              <li className="flex items-start gap-3 text-sm font-bold text-slate-400">
+                <Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <span className="flex flex-col gap-1">
+                  <a href="mailto:legaldoorindia@gmail.com" className="hover:text-white transition-colors break-all">
+                    legaldoorindia@gmail.com
+                  </a>
+                  <a href="mailto:info@legaldoor.in" className="hover:text-white transition-colors break-all">
+                    info@legaldoor.in
+                  </a>
+                </span>
               </li>
               <li className="flex items-center gap-3 text-sm font-bold text-slate-400">
                 <Clock className="w-4 h-4 text-primary shrink-0" />
