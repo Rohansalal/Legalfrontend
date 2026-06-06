@@ -17,6 +17,19 @@ const quickServices = [
   { label: 'ISO Certification', href: '/services/compliances/certification/iso-certification' },
 ];
 
+// "What Sets Us Apart" stat badges — highlight = orange leading number, label = dark text
+const apartStats = [
+  { highlight: '500+', label: 'MCA Certified Experts' },
+  { highlight: '20,000+', label: 'Genuine Customer Reviews' },
+  { highlight: '50,000+', label: 'Businesses Served Pan-India' },
+  { highlight: '', label: 'Real-Time App-based Monitoring' },
+  { highlight: '100%', label: 'Digital Process' },
+  { highlight: '24/7', label: 'Expert Support' },
+  { highlight: '5,000+', label: 'Services Delivered' },
+  { highlight: '20+', label: 'Countries Served' },
+  { highlight: '100+', label: 'Awards & Recognitions' },
+];
+
 export function HeroSection() {
   const floatingIcons = [
     { Icon: ShieldCheck, color: 'text-blue-400', top: '15%', left: '10%', delay: 0 },
@@ -209,6 +222,51 @@ export function HeroSection() {
               </div>
             </motion.div>
           </div>
+
+          {/* What Sets Us Apart — left label + single-line right→left marquee */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+            className="relative flex items-center gap-2.5 sm:gap-4 p-2 sm:p-2.5 rounded-3xl lg:rounded-full bg-gradient-to-r from-[#0a3d6d]/60 via-[#0d4c86]/50 to-[#0a3d6d]/60 border border-white/10 backdrop-blur-2xl shadow-2xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none" />
+
+            {/* Left label with orange accent */}
+            <div className="relative flex items-center gap-2 sm:gap-2.5 pl-3 sm:pl-4 shrink-0">
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 h-7 sm:h-8 w-[3px] rounded-full bg-gradient-to-b from-orange-400 to-orange-600 shadow-[0_0_12px_rgba(251,146,60,0.6)]" />
+              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-white shrink-0" strokeWidth={2.2} />
+              <span className="text-white font-bold text-[11px] sm:text-sm tracking-tight leading-tight max-w-[64px] sm:max-w-none">
+                What Sets Us Apart
+              </span>
+            </div>
+
+            {/* Divider */}
+            <span className="relative h-7 sm:h-8 w-px bg-white/15 shrink-0" />
+
+            {/* Marquee */}
+            <div className="relative overflow-hidden flex-1">
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l from-[#0a3d6d] to-transparent" />
+
+              <motion.div
+                className="flex w-max"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+              >
+                {[...apartStats, ...apartStats].map((stat, i) => (
+                  <div key={i} className="shrink-0 pr-2 sm:pr-3 py-0.5">
+                    <div className="flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white shadow-[0_4px_14px_rgba(0,0,0,0.15)] whitespace-nowrap">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 shrink-0" />
+                      {stat.highlight && (
+                        <span className="text-orange-500 font-extrabold text-xs sm:text-base">{stat.highlight}</span>
+                      )}
+                      <span className="text-slate-800 font-semibold text-[11px] sm:text-sm">{stat.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

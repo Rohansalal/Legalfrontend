@@ -1,7 +1,9 @@
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { CTASection } from '@/components/cta-section';
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { PostImage } from '@/components/post-image';
+import { blogPosts, blogHref } from '@/lib/blog-data';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
@@ -9,76 +11,68 @@ export const metadata = {
   description: 'Stay updated with the latest legal news, business regulations, and expert insights from Legal Door.',
 };
 
-const posts = [
-  {
-    title: 'The Future of Digital Contracts in India',
-    excerpt: 'Exploring the legal validity and emerging trends of smart contracts and digital signatures.',
-    date: 'March 15, 2024',
-    author: 'Dr. Vikram Sethi',
-    category: 'Technology Law'
-  },
-  {
-    title: 'New GST Amendments: What Businesses Need to Know',
-    excerpt: 'A comprehensive guide to the latest changes in GST compliance and filing requirements.',
-    date: 'March 10, 2024',
-    author: 'Rajesh Khanna',
-    category: 'Taxation'
-  },
-  {
-    title: 'Navigating Cross-Border IP Protection',
-    excerpt: 'Key strategies for protecting your intellectual property when expanding into international markets.',
-    date: 'March 5, 2024',
-    author: 'Meera Deshmukh',
-    category: 'Global Business'
-  },
-  {
-    title: 'Real Estate Regulation Act (RERA) Updates 2024',
-    excerpt: 'Important updates for property buyers and developers under the latest RERA guidelines.',
-    date: 'Feb 28, 2024',
-    author: 'Amit Verma',
-    category: 'Property'
-  }
-];
-
 export default function BlogPage() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      
-      <section className="pt-40 pb-24 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-20">
-            <h4 className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4">The Journal</h4>
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tight">
-              Legal <span className="text-primary italic">Intelligence.</span>
+
+      {/* Hero — dark so the transparent navbar stays visible */}
+      <section className="pt-32 sm:pt-40 pb-20 sm:pb-24 bg-[#022d54] bg-[radial-gradient(circle_at_top,#0a3d6d_0%,#022d54_55%,#021e3a_100%)] relative overflow-hidden">
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[60%] h-[60%] bg-orange-500/10 blur-[130px] rounded-full pointer-events-none" />
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h4 className="text-orange-400 font-black uppercase tracking-[0.3em] text-[11px] mb-4">The Journal</h4>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-6 tracking-tight">
+              Legal <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-indigo-400 bg-clip-text text-transparent italic">Intelligence.</span>
             </h1>
-            <p className="text-lg text-slate-500 font-bold leading-relaxed max-w-2xl mx-auto">
-              Deep dives into complex legal landscapes and regulatory shifts, authored by our R&D specialists.
+            <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto">
+              Deep dives into complex legal landscapes and regulatory shifts — authored by our lawyers, Chartered Accountants and company secretaries.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {posts.map((post, i) => (
-              <div key={i} className="group bg-white p-8 rounded-[32px] border border-slate-100 hover:shadow-2xl transition-all duration-500 flex flex-col">
-                <div className="flex items-center gap-2 mb-6">
-                  <span className="px-3 py-1 rounded-full bg-slate-100 text-[10px] font-black text-slate-500 uppercase tracking-widest">{post.category}</span>
-                  <div className="flex items-center gap-1.5 text-slate-400 text-[10px] font-bold ml-auto">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {post.date}
+      {/* Articles grid */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            {blogPosts.map((post) => (
+              <article
+                key={post.slug}
+                className="group rounded-3xl border border-slate-100 overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 flex flex-col"
+              >
+                <Link href={blogHref(post)} className="flex flex-col h-full">
+                  <div className="relative">
+                    <PostImage src={post.image} alt={post.title} className="h-48 sm:h-52" />
+                    <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
+                      {post.category}
+                    </span>
                   </div>
-                </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors leading-tight">{post.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed mb-8 flex-1">{post.excerpt}</p>
-                <div className="flex items-center justify-between pt-6 border-t border-slate-50">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-slate-100" />
-                    <span className="text-xs font-black text-slate-900">{post.author}</span>
+                  <div className="p-6 sm:p-7 flex flex-col flex-1">
+                    <div className="flex items-center gap-3 text-[11px] font-bold text-slate-400 mb-3">
+                      <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{post.date}</span>
+                      <span className="w-1 h-1 rounded-full bg-slate-300" />
+                      <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{post.readTime}</span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-3 group-hover:text-primary transition-colors leading-tight">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-6 flex-1 line-clamp-3">{post.excerpt}</p>
+                    <div className="flex items-center justify-between pt-5 border-t border-slate-100">
+                      <div className="flex items-center gap-2.5">
+                        <img src={post.author.avatar} alt={post.author.name} loading="lazy" className="w-8 h-8 rounded-full object-cover bg-slate-100" />
+                        <div className="leading-tight">
+                          <p className="text-[12px] font-black text-slate-900">{post.author.name}</p>
+                          <p className="text-[10px] font-semibold text-slate-400">{post.author.role}</p>
+                        </div>
+                      </div>
+                      <span className="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-primary transition-colors shrink-0">
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
-                  <Link href="#" className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-primary transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
+                </Link>
+              </article>
             ))}
           </div>
         </div>
