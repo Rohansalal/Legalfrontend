@@ -22,6 +22,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://legaldoor.in'),
   title: 'Legal Door - Expert Legal Services for Business Success',
   description:
     'Professional legal services including corporate law, IP protection, employment law, and business litigation. Your trusted partner in legal excellence.',

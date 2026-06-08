@@ -1,0 +1,7 @@
+# robots.txt for https://legaldoor.in
+# Allow full crawling — JS/CSS under /_next/ must stay crawlable so Google
+# can render pages correctly.
+User-agent: *
+Allow: /
+
+Sitemap: https://legaldoor.in/sitemap.xml
