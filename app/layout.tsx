@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Urbanist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import './globals.css'
 
 const urbanist = Urbanist({
@@ -49,6 +50,19 @@ export default function RootLayout({
       <body className={`${urbanist.variable} font-sans antialiased`}>
         {children}
         <Analytics />
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z411PQXX0D"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z411PQXX0D');
+          `}
+        </Script>
       </body>
     </html>
   )
