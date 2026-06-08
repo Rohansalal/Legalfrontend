@@ -11,7 +11,6 @@ const partners: { name: string; logo: string; dark?: boolean }[] = [
   { name: 'Business Door', logo: '/images/partner/business-door.jpeg' },
   { name: 'Weblok', logo: '/images/partner/weblok.jpeg' },
   { name: 'Trippex Travels', logo: '/images/partner/trippex-travels.png' },
-  { name: "Preceptors' IT & Business Solutions", logo: '/images/partner/preceptors.png', dark: true },
   { name: 'AiidL Technologies', logo: '/images/partner/aiidl-technologies.jpg' },
 ];
 
