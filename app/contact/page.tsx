@@ -13,23 +13,22 @@ const contactCards = [
   {
     icon: Phone,
     label: 'Call Us',
-    value: '+91 (22) 4567-8900',
-    sub: 'Mon – Sat, 10am – 7pm',
-    href: 'tel:+912245678900',
+    value: '+91 98117 65737',
+    href: 'tel:+919811765737',
   },
   {
     icon: Mail,
     label: 'Email Us',
-    value: 'contact@legaldoor.in',
-    sub: 'We reply within 1 business day',
-    href: 'mailto:contact@legaldoor.in',
+    value: 'legaldoorindia@gmail.com',
+    sub: 'info@legaldoor.in',
+    href: 'mailto:legaldoorindia@gmail.com',
+    subHref: 'mailto:info@legaldoor.in',
   },
   {
     icon: MapPin,
     label: 'Visit Us',
-    value: '12th Floor, Legal Tower',
-    sub: 'Business District, Mumbai 400001',
-    href: '#',
+    value: 'Office No. OC-1021, 10th Floor, Gaur City Center,',
+    sub: 'Greater Noida West, G.B. Nagar, UP – 201318',
   },
 ];
 
@@ -66,18 +65,29 @@ export default function ContactPage() {
         {/* ── Contact method cards ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14 sm:mb-20 -mt-28 sm:-mt-32 relative z-20">
           {contactCards.map((c) => (
-            <a
+            <div
               key={c.label}
-              href={c.href}
               className="group bg-white border border-slate-100 rounded-3xl p-7 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors">
                 <c.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
               </div>
               <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-1.5">{c.label}</p>
-              <p className="text-lg font-black text-slate-900">{c.value}</p>
-              <p className="text-sm text-slate-500 font-medium mt-1">{c.sub}</p>
-            </a>
+              {c.href ? (
+                <a href={c.href} className="text-lg font-black text-slate-900 hover:text-primary transition-colors">
+                  {c.value}
+                </a>
+              ) : (
+                <p className="text-lg font-black text-slate-900">{c.value}</p>
+              )}
+              {c.sub && (c.subHref ? (
+                <a href={c.subHref} className="block text-sm text-slate-500 font-medium mt-1 hover:text-primary transition-colors">
+                  {c.sub}
+                </a>
+              ) : (
+                <p className="text-sm text-slate-500 font-medium mt-1">{c.sub}</p>
+              ))}
+            </div>
           ))}
         </div>
 
@@ -118,10 +128,10 @@ export default function ContactPage() {
                 Call us during business hours and speak directly with an expert.
               </p>
               <a
-                href="tel:+912245678900"
+                href="tel:+919811765737"
                 className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 font-black text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors"
               >
-                +91 (22) 4567-8900
+                +91 98117 65737
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>

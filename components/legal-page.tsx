@@ -84,8 +84,8 @@ export function LegalPage({ title, lastUpdated, intro, sections }: LegalPageProp
                 contact us
               </Link>{' '}
               or email{' '}
-              <a href="mailto:contact@legaldoor.in" className="text-primary font-black hover:underline">
-                contact@legaldoor.in
+              <a href="mailto:info@legaldoor.in" className="text-primary font-black hover:underline">
+                info@legaldoor.in
               </a>
               .
             </p>
